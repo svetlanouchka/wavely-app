@@ -31,12 +31,16 @@ const models = {};
 
 const ItemManager = require("./ItemManager");
 const UserManager = require("./UserManager");
+const FrequencyManager = require("./FrequencyManager");
 
 models.item = new ItemManager();
 models.item.setDatabase(pool);
 
 models.user = new UserManager();
 models.user.setDatabase(pool);
+
+models.frequency = new FrequencyManager();
+models.frequency.setDatabase(pool);
 
 
 // bonus: use a proxy to personalize error message,
