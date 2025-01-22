@@ -33,5 +33,4 @@ router.put("/categories/:id", categoryControllers.edit);
 router.post("/categories", categoryControllers.add);
 router.delete("/categories/:id", categoryControllers.destroy);
 
-
 module.exports = router;
