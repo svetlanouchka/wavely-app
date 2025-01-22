@@ -48,9 +48,9 @@ const edit = async (req, res) => {
 			} else {
 				if (existingUser[0].image_url) {
 					fs.unlinkSync(existingUser[0].image_url);
-					res.status(200).send("Updated");
+					res.status(200).send("Updated user and picture with success");
 				} else if (!existingUser[0].image_url) {
-					res.status(200).send("Updated with success");
+					res.status(200).send("Updated user and added a picture");
 				}
 			}
 		})
