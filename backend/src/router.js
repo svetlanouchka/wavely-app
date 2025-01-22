@@ -5,6 +5,7 @@ const router = express.Router();
 const itemControllers = require("./controllers/itemControllers");
 const userControllers = require("./controllers/userControllers");
 const frequencyControllers = require("./controllers/frequencyControllers");
+const categoryControllers = require("./controllers/categoryControllers");
 
 router.get("/users", userControllers.browse);
 
@@ -19,5 +20,12 @@ router.get("/frequencies/:id", frequencyControllers.read);
 router.put("/frequencies/:id", frequencyControllers.edit);
 router.post("/frequencies", frequencyControllers.add);
 router.delete("/frequencies/:id", frequencyControllers.destroy);
+
+router.get("/categories", categoryControllers.browse);
+router.get("/categories/:id", categoryControllers.read);
+router.put("/categories/:id", categoryControllers.edit);
+router.post("/categories", categoryControllers.add);
+router.delete("/categories/:id", categoryControllers.destroy);
+
 
 module.exports = router;
