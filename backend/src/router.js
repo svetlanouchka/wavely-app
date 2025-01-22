@@ -12,7 +12,8 @@ const uploadPicture = require("./Middlewares/Upload");
 router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);
 router.post("/users", userControllers.add);
-router.put("/users/:id", uploadPicture, userControllers.edit);
+router.patch("/users/:id", userControllers.edit);
+router.patch("/users/:id/avatar", uploadPicture, userControllers.editAvatar);
 router.delete("/users/:id", userControllers.destroy);
 
 router.get("/items", itemControllers.browse);
