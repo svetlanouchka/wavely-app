@@ -30,12 +30,15 @@ const read = (req, res) => {
     });
 };
 
-const edit = (req, res) => {
+const edit = async (req, res) => {
     const frequency = req.body;
+    const audio_url = req.file.path;
 
-  // TODO validations (length, format...)
+    frequency.audio_url = audio_url;
 
-    frequency.id = parseInt(req.params.id, 10);
+    frequency.id = Number.parseInt(req.params.id, 10);
+
+    const [existingFrequency] = await models.frequency.find(frequency.id);
 
     models.frequency
     .update(frequency)
@@ -43,8 +46,13 @@ const edit = (req, res) => {
         if (result.affectedRows === 0) {
         res.sendStatus(404);
     } else {
-        res.sendStatus(204);
+        if (existingFrequency[0].audio_url) {
+            fs.unlinkSync(existingFrequency[0].audio_url);
+            res.status(200).send("Updated frequency and audio with success");
+        } else if (!existingFrequency[0].audio_url) {
+            res.status(200).send("Updated frequency and added an audio");
         }
+    }
     })
     .catch((err) => {
     console.error(err);

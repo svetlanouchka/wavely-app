@@ -7,7 +7,7 @@ const userControllers = require("./controllers/userControllers");
 const frequencyControllers = require("./controllers/frequencyControllers");
 const categoryControllers = require("./controllers/categoryControllers");
 
-const uploadPicture = require("./Middlewares/Upload");
+const {uploadPicture, uploadAudio} = require("./Middlewares/Upload");
 
 router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);
@@ -23,7 +23,7 @@ router.delete("/items/:id", itemControllers.destroy);
 
 router.get("/frequencies", frequencyControllers.browse);
 router.get("/frequencies/:id", frequencyControllers.read);
-router.put("/frequencies/:id", frequencyControllers.edit);
+router.put("/frequencies/:id", uploadAudio, frequencyControllers.edit);
 router.post("/frequencies", frequencyControllers.add);
 router.delete("/frequencies/:id", frequencyControllers.destroy);
 
