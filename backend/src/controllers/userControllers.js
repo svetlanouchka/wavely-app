@@ -32,25 +32,47 @@ const read = (req, res) => {
 
 const edit = async (req, res) => {
 	const user = req.body;
-	const image_url = req.file.path;
-
-	user.image_url = image_url;
 
 	user.id = Number.parseInt(req.params.id, 10);
-
-	const [existingUser] = await models.user.find(user.id);
 
 	models.user
 		.update(user)
 		.then(([result]) => {
 			if (result.affectedRows === 0) {
-				res.sendStatus(404);
+				res
+					.status(404)
+					.send({ message: "Erreur 404, profil utilisateur introuvable" });
+			} else {
+				res.status(200).send({ message: "Profil correctement mis à jour !" });
+			}
+		})
+		.catch((err) => {
+			console.error(err);
+			res.sendStatus(500);
+		});
+};
+
+const editAvatar = async (req, res) => {
+	const user = req.body;
+	const image_url = req.file.path;
+	user.image_url = image_url;
+	user.id = Number.parseInt(req.params.id, 10);
+
+	const [existingUser] = await models.user.find(user.id);
+
+	models.user
+		.updateAvatar(user)
+		.then(([result]) => {
+			if (result.affectedRows === 0) {
+				res.status(404).send({ message: "Update error" });
 			} else {
 				if (existingUser[0].image_url) {
 					fs.unlinkSync(existingUser[0].image_url);
-					res.status(200).send("Updated user and picture with success");
+					res
+						.status(200)
+						.send({ message: "Updated profile picture with success" });
 				} else if (!existingUser[0].image_url) {
-					res.status(200).send("Updated user and added a picture");
+					res.status(200).send({ message: "Added a profile picture" });
 				}
 			}
 		})
@@ -96,4 +118,5 @@ module.exports = {
 	edit,
 	add,
 	destroy,
+	editAvatar,
 };
