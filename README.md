@@ -1,20 +1,9 @@
 ![Bannière wavely](public/Banner.png)
 
 ## L'équipe
-<div style="display: flex; flex-direction: row; gap: 20px;">
-<div style="display: flex; align-items: center; flex-direction: column;">
-<img src="public/Svet.png" alt="Description de l'image" style="border-radius: 50%; margin-bottom: 5px" width="150" height="150">
-<p>Svetlana Preux-Nigay</p>
-</div>
-<div style="display: flex; align-items: center; flex-direction: column;">
-<img src="public/Matt.png" alt="Description de l'image" style="border-radius: 50%; margin-bottom: 5px" width="150" height="150">
-<p>Mattias Guittari</p>
-</div>
-<div style="display: flex; align-items: center; flex-direction: column;">
-<img src="public/Dounia.png" alt="Description de l'image" style="border-radius: 50%; margin-bottom: 5px" width="150" height="150">
-<p>Dounia Bouhayouf</p>
-</div>
-</div>
+| ![Svetlana Preux-Nigay](public/Svet.png) | ![Mattias Guittari](public/Matt.png) | ![Dounia Bouhayouf](public/Dounia.png) |
+|:----------------------------------------:|:------------------------------------:|:---------------------------------------:|
+| Svetlana Preux-Nigay                     | Mattias Guittari                     | Dounia Bouhayouf                        |
 
 ## Le projet
 
