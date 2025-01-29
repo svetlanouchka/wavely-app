@@ -8,10 +8,11 @@ const frequencyControllers = require("./controllers/frequencyControllers");
 const categoryControllers = require("./controllers/categoryControllers");
 
 const uploadPicture = require("./Middlewares/Upload");
+const validateUser = require("./Middlewares/validateUser");
 
 router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);
-router.post("/users", userControllers.add);
+router.post("/users", validateUser, userControllers.add);
 router.patch("/users/:id", userControllers.edit);
 router.patch("/users/:id/avatar", uploadPicture, userControllers.editAvatar);
 router.delete("/users/:id", userControllers.destroy);
