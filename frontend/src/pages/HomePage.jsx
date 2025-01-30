@@ -1,4 +1,4 @@
-import Frequence from "../components/Frequence";
+import Frequence from "../components/Seance";
 import logo from "../assets/Logo_W.png";
 
 export default function Home() {
