@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+@theme {
+  --font-albert-sans: "Albertus Sans", sans-serif;
+  --font-righteous: "Righteous", sans-serif;
+  --color-green-header: #DFFFB6;
+  --color-green: #C1FF72;
+  --color-blue: #5CE1E6;
+  --color-blue-light: #DCF2EE;
+  --color-blue-dark: #16A7AC;
+  --color-blue-violet: #5053F9;
+  --color-gray-light: #F5F5F5;
+
+}

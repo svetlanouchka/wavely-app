@@ -18,7 +18,7 @@ export default function Frequence() {
     );
     return (
         <div>
-            <h1 className="text-red-500">Hello</h1>
+            <h1 className="text-5xl font-righteous text-slate">Wavely</h1>
             <FrequencyImage />
             <Player />
         </div>
