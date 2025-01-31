@@ -1,6 +1,7 @@
 import Frequence from "../components/Seance";
 import logo from "../assets/Logo_W.png";
 import { Link } from "react-router-dom";
+import AnimatedBackground from "@components/BackgroundCanvas";
 
 export default function HomePage() {
 	return (
@@ -14,6 +15,7 @@ export default function HomePage() {
 			</Link>
 
 			<Frequence />
+			<AnimatedBackground />
 		</header>
 	);
 }
