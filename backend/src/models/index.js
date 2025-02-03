@@ -34,6 +34,7 @@ const UserManager = require("./UserManager");
 const FrequencyManager = require("./FrequencyManager");
 const CategoryManager = require("./CategoryManager");
 const SessionManager = require("./SessionManager");
+const TagManager = require("./TagManager");
 
 models.item = new ItemManager();
 models.item.setDatabase(pool);
@@ -49,6 +50,9 @@ models.category.setDatabase(pool);
 
 models.session = new SessionManager();
 models.session.setDatabase(pool);
+
+models.tag = new TagManager();
+models.tag.setDatabase(pool);
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
