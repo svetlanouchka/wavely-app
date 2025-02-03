@@ -6,6 +6,7 @@ const itemControllers = require("./controllers/itemControllers");
 const userControllers = require("./controllers/userControllers");
 const frequencyControllers = require("./controllers/frequencyControllers");
 const categoryControllers = require("./controllers/categoryControllers");
+const sessionControllers = require("./controllers/sessionControllers");
 
 const uploadPicture = require("./Middlewares/Upload");
 const validateUser = require("./Middlewares/validateUser");
@@ -28,6 +29,11 @@ router.get("/frequencies/:id", frequencyControllers.read);
 router.put("/frequencies/:id", frequencyControllers.edit);
 router.post("/frequencies", frequencyControllers.add);
 router.delete("/frequencies/:id", frequencyControllers.destroy);
+
+router.get("/sessions", sessionControllers.browse);
+router.get("/sessions/:id", sessionControllers.read);
+router.post("/sessions", sessionControllers.add);
+router.put("/sessions/:id", sessionControllers.edit);
 
 router.get("/categories", categoryControllers.browse);
 router.get("/categories/:id", categoryControllers.read);
