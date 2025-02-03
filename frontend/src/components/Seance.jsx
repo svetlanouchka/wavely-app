@@ -5,14 +5,14 @@ import 'react-h5-audio-player/lib/styles.css';
 export default function Frequence() {
 
     const FrequencyImage = () => (
-        <img src="http://localhost:5000/assets/images/frequences/stress.png" alt="stress frequency illustration" style={{width: "400px"}}/>
+        <img src="http://localhost:5000/assets/images/frequences/stress.png" alt="stress frequency illustration" style={{width: "200px"}}/>
     );
     const Player = () => (
         <AudioPlayer
             autoPlay
-            src="http://localhost:5000/audio/successmp3.mp3"
+            src="http://localhost:5000/audio/success.ogg"
             onPlay={e => console.log("onPlay")}
-            type="audio/mp3"
+            type="audio/ogg"
         // other props here
         />
     );
