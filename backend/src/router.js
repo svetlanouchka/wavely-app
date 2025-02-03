@@ -7,6 +7,7 @@ const userControllers = require("./controllers/userControllers");
 const frequencyControllers = require("./controllers/frequencyControllers");
 const categoryControllers = require("./controllers/categoryControllers");
 const sessionControllers = require("./controllers/sessionControllers");
+const tagControllers = require("./controllers/tagControllers");
 
 const uploadPicture = require("./Middlewares/Upload");
 const validateUser = require("./Middlewares/validateUser");
@@ -40,5 +41,8 @@ router.get("/categories/:id", categoryControllers.read);
 router.put("/categories/:id", categoryControllers.edit);
 router.post("/categories", categoryControllers.add);
 router.delete("/categories/:id", categoryControllers.destroy);
+
+router.get("/tags", tagControllers.browse);
+router.get("/tags/:id", tagControllers.read);
 
 module.exports = router;
