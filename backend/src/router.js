@@ -11,10 +11,23 @@ const tagControllers = require("./controllers/tagControllers");
 
 const uploadPicture = require("./Middlewares/Upload");
 const validateUser = require("./Middlewares/validateUser");
+const {
+	hashPassword,
+	verifyPassword,
+	verifyToken,
+} = require("./Middlewares/auth");
+
+router.post(
+	"/login",
+	userControllers.getUserByEmailWithPassword,
+	verifyPassword,
+);
+
+router.get("/my-profile", verifyToken, userControllers.getUserById);
 
 router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);
-router.post("/users", validateUser, userControllers.add);
+router.post("/users", validateUser, hashPassword, userControllers.add);
 router.patch("/users/:id", userControllers.edit);
 router.patch("/users/:id/avatar", uploadPicture, userControllers.editAvatar);
 router.delete("/users/:id", userControllers.destroy);
