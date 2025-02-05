@@ -1,4 +1,3 @@
-const { log } = require("node:console");
 const models = require("../models");
 const fs = require("node:fs");
 
@@ -23,6 +22,32 @@ const read = (req, res) => {
 				res.sendStatus(404);
 			} else {
 				res.send(rows[0]);
+			}
+		})
+		.catch((err) => {
+			console.error(err);
+			res.sendStatus(500);
+		});
+};
+
+const getUserById = (req, res) => {
+	const id = req.payload.sub;
+
+	models.user
+		.find(id)
+		.then(([rows]) => {
+			if (rows[0] == null) {
+				res.sendStatus(404);
+			} else {
+				const userProfile = {
+					id: rows[0].id,
+					first_name: rows[0].first_name,
+					last_name: rows[0].last_name,
+					birth_date: rows[0].birth_date,
+					email: rows[0].email,
+					image_url: rows[0].image_url,
+				};
+				res.status(200).json({ message: "isLogged", user: userProfile });
 			}
 		})
 		.catch((err) => {
@@ -143,4 +168,5 @@ module.exports = {
 	destroy,
 	editAvatar,
 	getUserByEmailWithPassword,
+	getUserById,
 };
