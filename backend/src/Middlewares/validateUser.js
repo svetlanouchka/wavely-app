@@ -30,7 +30,7 @@ const validateUser = [
 		.withMessage("L'email est obligatoire pour vous inscrire")
 		.isEmail()
 		.withMessage("Veuillez entrer un email valide"),
-	body("hached_password")
+	body("password")
 		.notEmpty()
 		.withMessage("Le mot de passe est obligatoire pour vous inscrire")
 		.matches(

@@ -1,3 +1,4 @@
+const { log } = require("node:console");
 const models = require("../models");
 const fs = require("node:fs");
 
@@ -84,6 +85,7 @@ const editAvatar = async (req, res) => {
 
 const add = (req, res) => {
 	const user = req.body;
+	console.log("user --->", user);
 
 	models.user
 		.insert(user)
