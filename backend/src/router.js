@@ -11,9 +11,13 @@ const tagControllers = require("./controllers/tagControllers");
 
 const uploadPicture = require("./Middlewares/Upload");
 const validateUser = require("./Middlewares/validateUser");
-const { hashPassword } = require("./Middlewares/auth");
+const { hashPassword, verifyPassword } = require("./Middlewares/auth");
 
-router.get("/login");
+router.post(
+	"/login",
+	userControllers.getUserByEmailWithPassword,
+	verifyPassword,
+);
 
 router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);

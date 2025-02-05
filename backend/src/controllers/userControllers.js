@@ -114,6 +114,27 @@ const destroy = (req, res) => {
 		});
 };
 
+const getUserByEmailWithPassword = (req, res, next) => {
+	const { email } = req.body;
+	console.log("email -->", email);
+
+	models.user
+		.findUserByEmail(email)
+		.then(([users]) => {
+			if (users[0] != null) {
+				const [firstUser] = users;
+				req.user = firstUser;
+				next();
+			} else {
+				res.sendStatus(401);
+			}
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send("Error retrieving data from database");
+		});
+};
+
 module.exports = {
 	browse,
 	read,
@@ -121,4 +142,5 @@ module.exports = {
 	add,
 	destroy,
 	editAvatar,
+	getUserByEmailWithPassword,
 };
