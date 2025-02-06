@@ -12,19 +12,20 @@ function AppLayout() {
 		<Layout>
 			<Outlet />
 		</Layout>
-	)
+	);
 }
 
 const router = createBrowserRouter([
-	{ element: <AppLayout />, 
-		children: [			
 	{ path: "/", element: <HomePage /> },
-	{ path: "/about", element: <AboutPage /> },
-	{ path: "/frequencies", element: <FrequenciesPage /> },
-	{ path: "/faq", element: <FaqPage/>}, 
-	{ path: "/contact", element: <ContactPage/>},
-		]
-	}
+	{
+		element: <AppLayout />,
+		children: [
+			{ path: "/about", element: <AboutPage /> },
+			{ path: "/frequencies", element: <FrequenciesPage /> },
+			{ path: "/faq", element: <FaqPage /> },
+			{ path: "/contact", element: <ContactPage /> },
+		],
+	},
 ]);
 
 export default router;
