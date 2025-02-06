@@ -30,6 +30,32 @@ const read = (req, res) => {
 		});
 };
 
+const getUserById = (req, res) => {
+	const id = req.payload.sub;
+
+	models.user
+		.find(id)
+		.then(([rows]) => {
+			if (rows[0] == null) {
+				res.sendStatus(404);
+			} else {
+				const userProfile = {
+					id: rows[0].id,
+					first_name: rows[0].first_name,
+					last_name: rows[0].last_name,
+					birth_date: rows[0].birth_date,
+					email: rows[0].email,
+					image_url: rows[0].image_url,
+				};
+				res.status(200).json({ message: "isLogged", user: userProfile });
+			}
+		})
+		.catch((err) => {
+			console.error(err);
+			res.sendStatus(500);
+		});
+};
+
 const edit = async (req, res) => {
 	const user = req.body;
 
@@ -84,6 +110,7 @@ const editAvatar = async (req, res) => {
 
 const add = (req, res) => {
 	const user = req.body;
+	console.log("user --->", user);
 
 	models.user
 		.insert(user)
@@ -112,6 +139,27 @@ const destroy = (req, res) => {
 		});
 };
 
+const getUserByEmailWithPassword = (req, res, next) => {
+	const { email } = req.body;
+	console.log("email -->", email);
+
+	models.user
+		.findUserByEmail(email)
+		.then(([users]) => {
+			if (users[0] != null) {
+				const [firstUser] = users;
+				req.user = firstUser;
+				next();
+			} else {
+				res.sendStatus(401);
+			}
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send("Error retrieving data from database");
+		});
+};
+
 module.exports = {
 	browse,
 	read,
@@ -119,4 +167,6 @@ module.exports = {
 	add,
 	destroy,
 	editAvatar,
+	getUserByEmailWithPassword,
+	getUserById,
 };

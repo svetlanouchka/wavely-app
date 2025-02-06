@@ -1,5 +1,5 @@
 import "../BackgroundAnimation.css";
 
-export default function AnimatedBackground() {
-	return <div className="animated-background" />;
+export default function AnimatedBackground({ animationClassName }) {
+	return <div className={`animated-background ${animationClassName}`} />;
 }
