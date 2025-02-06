@@ -23,7 +23,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: repeating-radial-gradient(circle at center, rgb(9 223 148) 0, rgb(19 173 132), rgb(9 223 148) var(--size));
+    background: repeating-radial-gradient(circle at center, rgb(186, 247, 236) 0, rgb(146, 225, 208), rgb(192, 245, 235) var(--size));
     animation: expandWaves 40s cubic-bezier(0.42, 0, 0.58, 1) infinite;
 }
 
