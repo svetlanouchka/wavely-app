@@ -1,7 +1,7 @@
 @property --size {
   syntax: "<length>";
   inherits: false;
-  initial-value: 30px;
+  initial-value: 50px;
 }
 
 @keyframes expandWaves {
@@ -17,14 +17,30 @@
 }
 
 .animated-background {
-    position: absolute;
+  position: absolute;
     z-index: -1;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: repeating-radial-gradient(circle at center, rgb(9 223 148) 0, rgb(19 173 132), rgb(9 223 148) var(--size));
-    animation: expandWaves 40s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+    animation: expandWaves 20s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+}
+
+.animated-background-home {
+
+  background: repeating-radial-gradient(circle at center, #C1FF72 -10rem, #16A7AC, #C1FF72 var(--size));
+
+  /* background: repeating-radial-gradient(circle at center, rgb(9 223 148) 0, rgb(161 12 205), rgb(9 223 148) var(--size)); */
+    
+  /* background: repeating-radial-gradient(circle at center, rgb(63 219 191) 0, rgb(207 146 225), rgb(63 219 191) var(--size)); */
+    /* background: repeating-radial-gradient(circle at center, rgb(186, 247, 236) 0, rgb(146, 225, 208), rgb(192, 245, 235) var(--size)); */
+    
+    
+}
+
+.animated-background-session {
+  background: repeating-radial-gradient(circle at center, #16A7AC -5rem, #2124c5, #16A7AC var(--size));
+
 }
 
 @media screen and (width > 768px) {
