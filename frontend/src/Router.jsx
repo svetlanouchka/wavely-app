@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import AboutPage from "@pages/AboutPage";
 import FaqPage from "@pages/FaqPage";
 import FrequenciesPage from "@pages/FrequenciesPage";
+import FrequencyPage from "@pages/FrequencyPage";
 import ContactPage from "@pages/ContactPage";
 
 function AppLayout() {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
 		children: [
 			{ path: "/about", element: <AboutPage /> },
 			{ path: "/frequencies", element: <FrequenciesPage /> },
+			{ path: "/frequencies/:id", element: <FrequencyPage /> },
 			{ path: "/faq", element: <FaqPage /> },
 			{ path: "/contact", element: <ContactPage /> },
 		],

@@ -49,7 +49,7 @@ export default function Frequency() {
                     idButton={`freq-btn-${freq.id}`}
                     text="Voir"
                     style={{ backgroundColor: "#C1FF72", color: "#000000", borderRadius: "50px" }}
-                    onClick={() => navigate(`/frequence/${freq.id}`)}
+                    onClick={() => navigate(`/frequencies/${freq.id}`)}
                     />
                     </div>
                 </div>
