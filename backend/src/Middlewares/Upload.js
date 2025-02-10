@@ -7,7 +7,7 @@ const upload = multer({
 			cb(null, "src/Uploads/Avatars");
 		},
 		filename: (req, file, cb) => {
-			const userId = req.params.id; // Exemple : ID de l'utilisateur
+			const userId = req.params.id;
 			const ext = path.extname(file.originalname);
 			cb(null, `${userId}-${Date.now()}${ext}`);
 		},
@@ -21,6 +21,5 @@ const upload = multer({
 		}
 	},
 });
-
 
 module.exports = upload.single("image_url");
