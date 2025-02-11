@@ -11,11 +11,7 @@ export default function HomePage() {
 					Partager des bonnes ondes
 				</h2>
 			</div>
-			<Header
-				backgroundColor="bg-gray-light"
-				string="Les Fréquences"
-				path="/frequencies"
-			/>
+			<Header backgroundColor="bg-gray-light" />
 			<AnimatedBackground animationClassName={animationClassName} />
 		</div>
 	);

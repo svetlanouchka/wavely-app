@@ -1,16 +1,12 @@
 import Header from "./Header";
 import Footer from "./Footer";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 export default function Layout() {
 	return (
 		<div className="flex flex-col min-h-screen bg-blue-light">
-			<Header
-				backgroundColor="bg-green-header"
-				string="Questions / Réponses"
-				path="/faq"
-			/>
-			<main className="p-4" style={{ minHeight: "calc(100vh - 192px)" }}>
+			<Header backgroundColor="bg-green-header" />
+			<main className="p-4 min-h-[calc(100vh-192px)]">
 				<Outlet />
 			</main>
 			<Footer />
