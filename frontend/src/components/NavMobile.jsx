@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import CrossIcon from "./CrossIcon";
 
 export default function NavMobile({ backgroundColor, isHome }) {
 	console.log(isHome);
 	return (
 		<div
-			className={`absolute w-[100%] h-[25rem] ${backgroundColor} ${isHome ? "bottom-0" : "top-0"}  rounded-[2rem]`}
+			className={`md:hidden absolute w-[100%] h-[30rem] ${backgroundColor} ${isHome ? "bottom-0" : "top-0"}  rounded-[2rem]`}
 		>
 			<ul className="flex flex-col items-center justify-center h-[100%] gap-4 text-[1.4rem]">
 				<li>

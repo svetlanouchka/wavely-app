@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import CrossIcon from "@components/CrossIcon";
 import NavDesktop from "@components/NavDesktop";
+import LogoW from "@components/LogoW";
 
 export default function Header({ backgroundColor, string, path }) {
 	const location = useLocation();
@@ -14,13 +15,16 @@ export default function Header({ backgroundColor, string, path }) {
 	};
 	return (
 		<header
-			className={`w-[80%] max-w-[24rem] h-[4rem] rounded-full my-8 mx-2 flex justify-center items-center font-albert-sans relative ${backgroundColor}`}
+			className={`w-[80%] max-w-[34rem] h-[4rem] rounded-full my-6 mx-auto flex md:flex-col justify-center items-center font-albert-sans relative  ${backgroundColor}`}
 		>
 			<NavDesktop isHome={isHome} />
 			{!showMenu ? (
-				<MenuBurger toggleMenu={toggleMenu} />
+				<div className="md:hidden flex items-center w-full justify-between mr-3 ml-4">
+					<LogoW isHome={isHome} />
+					<MenuBurger toggleMenu={toggleMenu} />
+				</div>
 			) : (
-				<CrossIcon toggleMenu={toggleMenu} />
+				<CrossIcon isHome={isHome} toggleMenu={toggleMenu} />
 			)}
 			{showMenu && (
 				<NavMobile

@@ -4,6 +4,10 @@
 @theme {
   --font-albert-sans: "Albert Sans", sans-serif;
   --font-righteous: "Righteous", sans-serif;
+
+  --font-size-header: 18px;
+  --font-weight-header: 450;
+
   --color-green-header: #DFFFB6;
   --color-green-header-homepage: #DCF2EE;
   --color-green: #C1FF72;
