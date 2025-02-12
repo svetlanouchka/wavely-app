@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import CrossIcon from "./CrossIcon";
+import ButtonLaunch from "../ui/ButtonLaunch";
 
 export default function NavMobile({ backgroundColor, isHome }) {
 	console.log(isHome);
@@ -38,6 +38,9 @@ export default function NavMobile({ backgroundColor, isHome }) {
 							<p className="text-gray">Contact</p>
 						</button>
 					</Link>
+				</li>
+				<li>
+					<ButtonLaunch />
 				</li>
 			</ul>
 		</div>
