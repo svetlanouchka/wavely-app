@@ -67,7 +67,7 @@ export default function SignUpForm() {
 
     console.log(formik.values);
     return (
-        <form onSubmit={formik.handleSubmit} className="max-w-lg mx-auto bg-gray-light p-6 rounded-sm shadow-sm flex flex-col items-center">
+        <form onSubmit={formik.handleSubmit} className="w-sm mx-auto bg-gray-light p-6 rounded-sm flex flex-col items-center">
         {[
             { name: 'first_name', type: 'text', placeholder: 'Prénom' },
             { name: 'last_name', type: 'text', placeholder: 'Nom' },
