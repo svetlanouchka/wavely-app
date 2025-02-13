@@ -115,7 +115,9 @@ const add = (req, res) => {
 	models.user
 		.insert(user)
 		.then(([result]) => {
-			res.location(`/users/${result.insertId}`).sendStatus(201);
+			res
+				.location(`/users/${result.insertId}`)
+				.json({ message: "User created", id: result.insertId, user: user });
 		})
 		.catch((err) => {
 			console.error(err);
