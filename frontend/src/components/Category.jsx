@@ -12,7 +12,7 @@ export default function Category( { onSelectCategory, isClicked }) {
     , []);
 
     return (
-            <div className="flex justify-center items-start gap-8 p-4 mt-2">
+            <div className="flex flex-wrap justify-center items-start gap-8 p-4 mt-2">
             {categories.map((cat) => (
                 <button
                 key={cat.id} 
