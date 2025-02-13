@@ -1,4 +1,5 @@
 const AbstractManager = require("./AbstractManager");
+const { parse, format } = require("date-fns");
 
 class UserManager extends AbstractManager {
 	constructor() {
@@ -6,12 +7,16 @@ class UserManager extends AbstractManager {
 	}
 
 	insert(user) {
+		const birthDateSQL = format(
+			parse(user.birth_date, "dd/MM/yyyy", new Date()),
+			"yyyy-MM-dd",
+		);
 		return this.database.query(
 			`insert into ${this.table} (first_name, last_name, birth_date, email, hashed_password, image_url) values (?, ?, ?, ?, ?, ?)`,
 			[
 				user.first_name,
 				user.last_name,
-				user.birth_date,
+				birthDateSQL,
 				user.email,
 				user.hashed_password,
 				user.image_url,

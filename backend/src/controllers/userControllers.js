@@ -110,7 +110,7 @@ const editAvatar = async (req, res) => {
 
 const add = (req, res) => {
 	const user = req.body;
-	console.log("user --->", user);
+	console.log("requête dans user controller ??--->", user);
 
 	models.user
 		.insert(user)
