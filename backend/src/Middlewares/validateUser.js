@@ -40,6 +40,7 @@ const validateUser = [
 			"Le mot de passe doit être long de 8 caractères minimum, comporter au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial parmi !@#$%^&?*",
 		),
 	(req, res, next) => {
+		console.log("requête ??--->", req.body);
 		const errors = validationResult(req);
 		if (!errors.isEmpty())
 			return res.status(400).json({ errors: errors.array() });
