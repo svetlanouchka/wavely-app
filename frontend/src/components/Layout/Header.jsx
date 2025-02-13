@@ -1,27 +1,39 @@
-import { Link } from "react-router-dom";
+import NavMobile from "@components/NavMobile";
+import MenuBurger from "../../components/MenuBurger";
+import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+import CrossIcon from "@components/CrossIcon";
+import NavDesktop from "@components/NavDesktop";
+import LogoW from "@components/LogoW";
 
 export default function Header({ backgroundColor, string, path }) {
+	const location = useLocation();
+	const isHome = location.pathname === "/";
+	const [showMenu, setShowMenu] = useState(false);
+	const toggleMenu = () => {
+		setShowMenu(!showMenu);
+	};
 	return (
 		<header
-			className={`w-[23rem] rounded-full p-4 my-8 mx-2 flex justify-center items-center font-albert-sans ${backgroundColor}`}
+			className={`w-[80%] max-w-[36rem] h-[4rem] rounded-full mt-6 mx-auto flex md:flex-col justify-center items-center font-albert-sans relative  ${backgroundColor}`}
 		>
-			<div className="flex gap-4">
-				<Link to="/about">
-					<button type="button">
-						<p className="text-gray">La méthode</p>
-					</button>
-				</Link>
-				<Link to={path}>
-					<button type="button">
-						<p className="text-gray">{string}</p>
-					</button>
-				</Link>
-				<Link to="/contact">
-					<button type="button">
-						<p className="text-gray">Contact</p>
-					</button>
-				</Link>
-			</div>
+			<NavDesktop isHome={isHome} />
+			{!showMenu ? (
+				<div className="md:hidden flex items-center w-full justify-between mr-3 ml-4">
+					<LogoW isHome={isHome} />
+					<MenuBurger toggleMenu={toggleMenu} />
+				</div>
+			) : (
+				<CrossIcon isHome={isHome} toggleMenu={toggleMenu} />
+			)}
+			{showMenu && (
+				<NavMobile
+					toggleMenu={toggleMenu}
+					showMenu={showMenu}
+					backgroundColor={backgroundColor}
+					isHome={isHome}
+				/>
+			)}
 			{/* <ButtonLaunch /> */}
 		</header>
 	);

@@ -8,6 +8,7 @@ import FrequenciesPage from "@pages/FrequenciesPage";
 import FrequencyPage from "@pages/FrequencyPage";
 import ContactPage from "@pages/ContactPage";
 import SignUpPage from "@pages/SignUpPage";
+import LoginPage from "@pages/LoginPage";
 
 function AppLayout() {
 	return (
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
 			{ path: "/faq", element: <FaqPage /> },
 			{ path: "/contact", element: <ContactPage /> },
 			{ path: "/signup", element: <SignUpPage /> },
+			{ path: "/login", element: <LoginPage /> },
 		],
 	},
 ]);
