@@ -85,7 +85,6 @@ export default function SignUpForm() {
 					throw new Error("Une erreur est survenue");
 				}
 				const data = await response.json();
-				console.log(formik.values);
 				console.log("data ? -->", data);
 			} catch (error) {
 				console.error("Erreur:", error);

@@ -110,13 +110,13 @@ const editAvatar = async (req, res) => {
 
 const add = (req, res) => {
 	const user = req.body;
-	console.log("requête dans user controller ??--->", user);
 
 	models.user
 		.insert(user)
 		.then(([result]) => {
 			res
 				.location(`/users/${result.insertId}`)
+				.status(201)
 				.json({ message: "User created", id: result.insertId, user: user });
 		})
 		.catch((err) => {
