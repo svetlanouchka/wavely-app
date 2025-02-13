@@ -38,6 +38,7 @@ export default function LoginForm() {
 					throw new Error("Une erreur est survenue");
 				}
 				const data = await response.json();
+				console.log(data);
 				resetForm();
 				navigate("/frequencies");
 			} catch (error) {
