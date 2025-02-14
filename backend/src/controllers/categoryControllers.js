@@ -4,7 +4,6 @@ const browse = (req, res) => {
     models.category
     .findAll()
     .then(([rows]) => {
-        console.log(rows);
         res.send(rows);
     })
     .catch((err) => {
