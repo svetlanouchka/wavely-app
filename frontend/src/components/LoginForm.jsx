@@ -50,14 +50,17 @@ export default function LoginForm() {
 	});
 	console.log("???", formik);
 	return (
-		<div className=" h-full flex justify-center mx-auto bg-gray-light p-6 rounded-sm flex-col items-center w-[90%] max-w-[23rem] shadow-sm">
+		<div className=" h-full flex justify-center mx-auto bg-gray-light p-6 rounded-sm flex-col items-center w-[90%] max-w-[28rem] shadow-sm">
 			<h1 className="text-4xl font-bold font-albert-sans text-center p-6">
 				Connectez vous
 			</h1>
 			<p className="text-center font-albert-sans p-2 pb-6">
 				Commencez à partager des bonnes ondes aujourd'hui
 			</p>
-			<form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
+			<form
+				onSubmit={formik.handleSubmit}
+				className="flex flex-col gap-4 w-[90%] md:w-[70%]"
+			>
 				{[
 					{ name: "email", type: "email", placeholder: "Email" },
 					{ name: "password", type: "text", placeholder: "Mot de passe" },
