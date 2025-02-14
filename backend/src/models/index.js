@@ -35,6 +35,7 @@ const FrequencyManager = require("./FrequencyManager");
 const CategoryManager = require("./CategoryManager");
 const SessionManager = require("./SessionManager");
 const TagManager = require("./TagManager");
+const FrequencyTagManager = require("./FrequencyTagManager");
 
 models.item = new ItemManager();
 models.item.setDatabase(pool);
@@ -53,6 +54,9 @@ models.session.setDatabase(pool);
 
 models.tag = new TagManager();
 models.tag.setDatabase(pool);
+
+models.frequency_tag = new FrequencyTagManager();
+models.frequency_tag.setDatabase(pool);
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model

@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react';
 
-export default function Category( { onSelectCategory, isClicked }) {
+export default function Category( { categoryId, onSelectCategory, isClicked }) {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
+        if (categoryId) {
+            fetch(`http://localhost:5000/categories/${categoryId}`)
+                .then((response) => response.json())
+                .then((data) => setCategories([data]))
+                .catch((error) => console.error("Erreur de chargement de la catégorie", error));
+        } else {
         fetch('http://localhost:5000/categories')
             .then((response) => response.json())
             .then((data) => setCategories(data))
             .catch((error) => console.error("Erreur de chargement des catégories", error));
     }
-    , []);
+    }
+    , [categoryId]);
 
     return (
             <div className="flex flex-wrap justify-center items-start gap-8 p-4 mt-2">
