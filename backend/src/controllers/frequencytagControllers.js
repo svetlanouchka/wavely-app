@@ -42,8 +42,21 @@ const findTagByFrequency = (req, res) => {
     
 }
 
+const findFrequencyByTag = (req, res) => {
+    models.frequency_tag
+        .findFrequencyByTag(req.params.id)
+        .then(([rows]) => {
+            res.send(rows);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.sendStatus(500);
+        });
+}
+
 module.exports = {
     browse,
     read,
-    findTagByFrequency
+    findTagByFrequency,
+    findFrequencyByTag
 };

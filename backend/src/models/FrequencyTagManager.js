@@ -10,6 +10,11 @@ class FrequencyTagManager extends AbstractManager {
             on t.id = ft.tag_id where ft.frequency_id = ?`, [frequencyId]);
     }
 
+    findFrequencyByTag(tagId) {
+        return this.database.query(`select f.id, f.name, f.image_url from frequency f join ${this.table} ft
+            on f.id = ft.frequency_id where ft.tag_id = ?`, [tagId]);
+    }
+
     
 }
 
