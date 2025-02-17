@@ -60,5 +60,6 @@ router.get("/tags", tagControllers.browse);
 router.get("/tags/:id", tagControllers.read);
 
 router.get("/frequencies/:id/tags", frequencyTagControllers.findTagByFrequency);
+router.get("/tags/:id/frequencies", frequencyTagControllers.findFrequencyByTag);
 
 module.exports = router;
