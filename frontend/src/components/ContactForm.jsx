@@ -35,7 +35,7 @@ export default function ContactForm() {
 		},
 	});
 	return (
-		<div className=" h-full flex justify-center mx-auto bg-gray-light p-6 rounded-sm flex-col items-center w-[90%] max-w-[28rem] shadow-sm">
+		<div className="relative h-full flex justify-center mx-auto my-[5rem] bg-gray-light p-6 rounded-sm flex-col items-center w-[90%] max-w-[28rem] shadow-sm">
 			<h1 className="text-4xl font-bold font-albert-sans text-center p-6">
 				Contactez-nous
 			</h1>

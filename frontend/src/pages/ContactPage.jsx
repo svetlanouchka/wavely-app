@@ -4,7 +4,10 @@ import ContactForm from "@components/ContactForm";
 export default function ContactPage() {
 	return (
 		<>
-			<ContactForm />
+			<div className="relative flex flex-col items-center justify-center h-screen">
+				<BackgroundShapes />
+				<ContactForm />
+			</div>
 		</>
 	);
 }
