@@ -9,6 +9,7 @@ const categoryControllers = require("./controllers/categoryControllers");
 const sessionControllers = require("./controllers/sessionControllers");
 const tagControllers = require("./controllers/tagControllers");
 const frequencyTagControllers = require("./controllers/frequencytagControllers");
+const contactControllers = require("./controllers/contactControllers");
 
 const uploadPicture = require("./Middlewares/Upload");
 const validateUser = require("./Middlewares/validateUser");
@@ -25,6 +26,8 @@ router.post(
 );
 
 router.get("/my-profile", verifyToken, userControllers.getUserById);
+
+router.post("/contact", contactControllers.send);
 
 router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);
