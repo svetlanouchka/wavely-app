@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import ButtonLaunch from "../ui/ButtonLaunch";
 
 export default function NavMobile({ backgroundColor, isHome }) {
-	console.log(isHome);
 	return (
 		<div
 			className={`md:hidden absolute w-[100%] h-[30rem] ${backgroundColor} ${isHome ? "bottom-0" : "top-0"}  rounded-[2rem]`}
