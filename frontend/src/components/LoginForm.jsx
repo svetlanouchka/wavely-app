@@ -19,10 +19,7 @@ export default function LoginForm() {
 			password: Yup.string().required("Champ requis ↑"),
 		}),
 		onSubmit: async (values, { resetForm }) => {
-			console.log("formik", formik);
-			console.log("formik email ---", formik.values.email);
 			setLoadingButton(true);
-
 			setErrorMessage("");
 			try {
 				const response = await fetch("http://localhost:5000/login", {
@@ -48,7 +45,6 @@ export default function LoginForm() {
 			}
 		},
 	});
-	console.log("???", formik);
 	return (
 		<div className=" h-full flex justify-center mx-auto bg-gray-light p-6 rounded-sm flex-col items-center w-[90%] max-w-[28rem] shadow-sm">
 			<h1 className="text-4xl font-bold font-albert-sans text-center p-6">

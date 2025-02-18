@@ -15,8 +15,8 @@ export default function ContactForm() {
 
 		if (!values.message) {
 			errors.message = "Champ requis ↑";
-		} else if (values.text.length < 10) {
-			errors.message = "Must be 10 min characters";
+		} else if (values.message.length < 10) {
+			errors.message = "Votre message doit faire au moins 10 caractères";
 		}
 
 		return errors;
@@ -27,8 +27,11 @@ export default function ContactForm() {
 			message: "",
 		},
 		validate,
-		onSubmit: (values) => {
-			alert(JSON.stringify(values, null, 2));
+		validateOnBlur: false, //
+		validateOnChange: false,
+		onSubmit: (values, { resetForm }) => {
+			console.log(JSON.stringify(values, null, 2));
+			resetForm();
 		},
 	});
 	return (
@@ -52,14 +55,15 @@ export default function ContactForm() {
 						placeholder="Votre email"
 						onChange={formik.handleChange}
 						value={formik.values.email}
-						className={`w-full rounded-md px-4 p-2 bg-white ${formik.errors.email ? "ring-2 ring-red-600" : "focus:ring-blue focus:ring-2 focus:outline-none"}
+						onBlur={formik.handleBlur}
+						className={`w-full rounded-md px-4 p-2 bg-white ${formik.errors.email ? "ring-2 ring-red-600 focus:ring-blue focus:outline-none" : "focus:ring-blue focus:ring-2 focus:outline-none"}
                         `}
 					/>
 
 					<div className="h-8">
-						{formik.errors.email ? (
+						{formik.touched.email && formik.errors.email && (
 							<p className="text-red-500 text-sm mt-1">{formik.errors.email}</p>
-						) : null}
+						)}
 					</div>
 					<textarea
 						id="message"
@@ -68,15 +72,16 @@ export default function ContactForm() {
 						placeholder="Votre message"
 						onChange={formik.handleChange}
 						value={formik.values.message}
-						className={`w-full rounded-md px-4 p-2 bg-white ${formik.errors.message ? "ring-2 ring-red-600" : "focus:ring-blue focus:ring-2 focus:outline-none"}
+						onBlur={formik.handleBlur}
+						className={`w-full rounded-md px-4 p-2 bg-white ${formik.errors.message ? "ring-2 ring-red-600 focus:ring-blue focus:outline-none" : "focus:ring-blue focus:ring-2 focus:outline-none"}
                         `}
 					/>
 					<div className="h-8">
-						{formik.errors.message ? (
+						{formik.errors.message && (
 							<p className="text-red-500 text-sm mt-1">
 								{formik.errors.message}
 							</p>
-						) : null}
+						)}
 					</div>
 				</div>
 				<ButtonMain type="submit" text="Envoyer" />
