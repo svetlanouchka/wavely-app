@@ -5,12 +5,14 @@ import Category from '../components/Category';
 import ButtonMain from '../ui/ButtonMain';
 import Tag from '@components/Tag';
 import { set } from 'date-fns';
+import Modal from '../ui/Modal';
 
 export default function FrequencyPage () {
     const { id } = useParams();
     const [frequency, setFrequency] = useState(null);
     const [recommendedFrequencies, setRecommendedFrequencies] = useState([]);
     const [tags, setTags] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         fetch(`http://localhost:5000/frequencies/${id}`)
@@ -77,18 +79,19 @@ export default function FrequencyPage () {
             {frequency && <Category categoryId={frequency.category_id} />}
         </div>
             <div className="flex w-full flex-row items-center gap-20 p-10">
-                <div className = "bg-gray-light shadow-lg rounded-sm w-[600px] h-[400px] flex justify-center items-center">
-                    <img src={frequency?.image_url} alt={frequency?.name} className="w-2/3 h-2/3 object-cover hover:scale-110 duration-300 mx-auto ease-in"/>
+                <div className = "bg-gray-light shadow-lg rounded-sm w-full h-full flex justify-center items-center">
+                    <img src={frequency?.image_url} alt={frequency?.name} className="w-4/5 h-4/5 object-cover hover:scale-110 duration-300 mx-auto ease-in"/>
                 </div>
             <div className = "flex w-full h-full">    
             <div className = "flex flex-col items-start text-left max-w-lg">
-                <h1 className="text-3xl text-left t-8">{frequency?.name}</h1>
-                <p className="text-gray-600 mt-4">{frequency?.description}</p>
+                <h1 className="text-3xl font-albert-sans text-left t-8">{frequency?.name}</h1>
+                        <p className="text-gray-600 font-albert-sans mt-4">{frequency?.description}</p>
                 <Tag frequencyId={id} />
                 <ButtonMain
                 idButton="start-session"
                 text="Lancer la séance"
                 style={{ backgroundColor: "#C1FF72", color: "#000000", borderRadius: "50px", width: "200px", marginTop: "20px"}}
+                onClick={() => setIsModalOpen(true)}    
                 />
             </div>
             </div>
@@ -96,7 +99,7 @@ export default function FrequencyPage () {
 
 
         <div className="p-10">
-            <h2 className="text-2xl font-albert-sans text-left">Fréquences recommandées</h2>
+            <h2 className="text-2xl font-albert-sans text-left">Essayez ces ondes</h2>
             <div className="flex flex-wrap gap-10 pt-10">
                 {recommendedFrequencies.map((freq) => (
                     <div key={freq.id} className="bg-gray-light w-70 h-70 shadow-lg rounded-sm p-2 flex flex-col items-center text-start">
@@ -109,6 +112,7 @@ export default function FrequencyPage () {
                 ))}
             </div>
         </div>
+        {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} />}
     </div>
             
 
