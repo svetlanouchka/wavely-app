@@ -1,10 +1,13 @@
 import BackgroundShapes from "@components/BackgroundShapes";
+import ContactForm from "@components/ContactForm";
 
 export default function ContactPage() {
-    return (
-        <div>
-            <div className="text-5xl text-green-600">Contact</div>
-            <BackgroundShapes />
-        </div>
-    );
+	return (
+		<>
+			<div className="relative flex flex-col items-center justify-center h-screen">
+				<BackgroundShapes />
+				<ContactForm />
+			</div>
+		</>
+	);
 }
