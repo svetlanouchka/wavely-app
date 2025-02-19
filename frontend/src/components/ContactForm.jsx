@@ -1,7 +1,10 @@
 import { useFormik } from "formik";
 import ButtonMain from "../ui/ButtonMain";
+import { Bounce, ToastContainer, toast } from "react-toastify";
 
 export default function ContactForm() {
+	const notify = () => toast("Votre message a bien été envoyé");
+
 	const validate = (values) => {
 		const errors = {};
 
@@ -27,11 +30,29 @@ export default function ContactForm() {
 			message: "",
 		},
 		validate,
-		validateOnBlur: false, //
+		validateOnBlur: false,
 		validateOnChange: false,
-		onSubmit: (values, { resetForm }) => {
-			console.log(JSON.stringify(values, null, 2));
-			resetForm();
+		onSubmit: async (values, { resetForm }) => {
+			try {
+				const response = await fetch("http://localhost:5000/contact", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(values),
+				});
+				if (!response.ok) {
+					throw new Error("Une erreur est survenue");
+				}
+
+				const data = await response.json();
+				console.log("contact data", data);
+
+				notify();
+				resetForm();
+			} catch (error) {
+				console.error("Erreur:", error);
+			}
 		},
 	});
 	return (
@@ -86,6 +107,19 @@ export default function ContactForm() {
 				</div>
 				<ButtonMain type="submit" text="Envoyer" />
 			</form>
+			<ToastContainer
+				position="bottom-center"
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick={false}
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="dark"
+				transition={Bounce}
+			/>
 		</div>
 	);
 }

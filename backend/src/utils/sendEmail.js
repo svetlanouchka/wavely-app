@@ -11,11 +11,12 @@ const transporter = nodemailer.createTransport({
 
 async function sendEmail(contact) {
 	try {
+		const formattedMessage = contact.message.replace(/\n/g, "<br>");
 		const info = await transporter.sendMail({
 			from: contact.email,
 			to: "reymundo.prohaska93@ethereal.email",
 			subject: "Message - Formulaire de contact",
-			html: `<div><p>${contact.message}</p></div>`,
+			html: `<div><p>${formattedMessage}</p></div>`,
 		});
 
 		return info;
