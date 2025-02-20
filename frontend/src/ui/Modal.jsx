@@ -3,6 +3,7 @@ import closeCrossIcon from '../assets/closeCrossIcon.svg';
 import StepIntroduction from '../components/Modals/StepIntroduction';
 import StepStressEvaluation from '../components/Modals/StepStressEvaluation';
 import StepPreferences from '../components/Modals/StepPreferences';
+import StepPostSession from '../components/Modals/StepPostSession';
 
 export default function Modal({ onClose }) {
     const {
