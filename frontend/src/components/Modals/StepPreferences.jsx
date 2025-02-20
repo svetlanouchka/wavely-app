@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import ButtonMain from "../../ui/ButtonMain";
 import PrevStepButton from "../../ui/PrevStepButton";
+import NextStepButton from "../../ui/NextStepButton";
 
-export default function StepPreferences({preferences, onToggle, onPrev}) {
+export default function StepPreferences({preferences, onToggle, onPrev, onNext}) {
     const navigate = useNavigate();
     return (
         <div className="flex flex-col items-center justify-center h-full space-y-4">
@@ -20,6 +21,7 @@ export default function StepPreferences({preferences, onToggle, onPrev}) {
             type="checkbox" checked={!preferences.affirmations && !preferences.relaxingSound} disabled/> <span>Sans accompagnement</span>
             </label>
             <PrevStepButton onClick={onPrev} />
+            <NextStepButton onClick={onNext} />
             <ButtonMain text="Lancer la séance" onClick={() => navigate("/seance")} />
 
         </div>

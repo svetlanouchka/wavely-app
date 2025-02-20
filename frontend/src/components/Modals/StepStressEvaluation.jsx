@@ -20,8 +20,8 @@ export default function StepStressEvaluation({note, onChange, onNext, onPrev}) {
                 className="w-64 h-2 bg-blue rounded-lg appearance-none cursor-pointer"
             />
             <div className="flex justify-between w-64 text-sm">
-                <span>1</span>
-                <span>10</span>
+                <span>Je suis complétement detendu</span>
+                <span>Je subis un stress intense</span>
             </div>
             <div className="flex justify-center w-64">
             <PrevStepButton onClick={onPrev} />
