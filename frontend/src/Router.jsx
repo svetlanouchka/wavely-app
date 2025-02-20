@@ -9,6 +9,7 @@ import FrequencyPage from "@pages/FrequencyPage";
 import ContactPage from "@pages/ContactPage";
 import SignUpPage from "@pages/SignUpPage";
 import LoginPage from "@pages/LoginPage";
+import SeancePage from "@pages/SeancePage";
 
 function AppLayout() {
 	return (
@@ -20,6 +21,7 @@ function AppLayout() {
 
 const router = createBrowserRouter([
 	{ path: "/", element: <HomePage /> },
+	{ path: "/frequencies/:id/seance", element: <SeancePage /> },
 	{
 		element: <AppLayout />,
 		children: [

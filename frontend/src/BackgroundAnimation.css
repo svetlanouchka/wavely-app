@@ -22,12 +22,12 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     animation: expandWaves 20s cubic-bezier(0.42, 0, 0.58, 1) infinite;
 }
 
 .animated-background-home {
-
+  height: 100%;
   background: repeating-radial-gradient(circle at center, #C1FF72 -10rem, #16A7AC, #C1FF72 var(--size));
 
   /* background: repeating-radial-gradient(circle at center, rgb(9 223 148) 0, rgb(161 12 205), rgb(9 223 148) var(--size)); */
@@ -39,11 +39,12 @@
 }
 
 .animated-background-session {
+  
   background: repeating-radial-gradient(circle at center, #16A7AC -5rem, #2124c5, #16A7AC var(--size));
 
 }
 
-@media screen and (width > 768px) {
+@media screen and (min-width: 768px) {
   @keyframes expandWaves {
     0% {
       --size: 170px;
