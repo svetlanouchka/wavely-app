@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import AudioPlayer from "../ui/AudioPlayer";
 import oceanWaves from "../../../backend/public/audio/sea_sound.wav";
 import ButtonMain from "../ui/ButtonMain";
@@ -10,12 +10,13 @@ export default function Seance() {
 	const [frequency, setFrequency] = useState([]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
+	const location = useLocation();
+	const state = location.state;
+
 	useEffect(() => {
 		fetch(`http://localhost:5000/frequencies/${id}`)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log("data -->", data);
-
 				setFrequency(data);
 			})
 			.catch((error) =>
@@ -34,22 +35,22 @@ export default function Seance() {
 						{frequency.description}
 					</p>
 				</div>
-				<div className="bg-gray-light shadow-lg rounded-md max-w-[30rem] flex flex-col justify-center items-center mb-10">
-					<img
-						src={frequency.image_url}
-						alt="Illustration de fréquence"
-						className="w-[15rem]"
-					/>
-					<div className="relative h-[6rem] text-xl overflow-hidden text-white bg-black m-4 px-2 rounded-sm font-albert-sans">
-						<p>{frequency.affirmation}</p>
-						<div className="">
-							<span className="bg-gray-400 absolute z-10 w-full h-full top-0 right-0 opacity-40" />
-							<p className="absolute  bg-black text-center top-[0.8rem] left-1/2 transform -translate-x-1/2 z-20 p-2 rounded-lg text-green-header">
-								Cliquez pour faire défiler
-							</p>
-						</div>
+				{/* <div className="bg-gray-light shadow-lg rounded-md max-w-[30rem] flex flex-col justify-center items-center mb-10"> */}
+				<img
+					src={frequency.image_url}
+					alt="Illustration de fréquence"
+					className="w-[15rem]"
+				/>
+				<div className="relative h-[6rem] text-xl overflow-hidden text-white bg-black m-4 px-2 rounded-sm font-albert-sans">
+					<p>{frequency.affirmation}</p>
+					<div className="">
+						<span className="bg-gray-400 absolute z-10 w-full h-full top-0 right-0 opacity-40" />
+						<p className="absolute  bg-black text-center top-[0.8rem] left-1/2 transform -translate-x-1/2 z-20 p-2 rounded-lg text-green-header">
+							Cliquez pour faire défiler
+						</p>
 					</div>
 				</div>
+				{/* </div> */}
 				<div className="flex flex-col items-center w-full max-w-[480px]">
 					<div className="grid grid-cols-2 w-full gap-3">
 						<div className="col-span-2">
@@ -59,16 +60,21 @@ export default function Seance() {
 								color="!bg-blue-light"
 							/>
 						</div>
-						<AudioPlayer
-							id="audioAffirmation"
-							src={frequency.affirmation_audio_url}
-							color="!bg-blue-violet"
-						/>
-						<AudioPlayer
-							id="audioOceanWaves"
-							src={oceanWaves}
-							color="!bg-blue-dark"
-						/>
+						{state.preferences.affirmations && (
+							<AudioPlayer
+								id="audioAffirmation"
+								src={frequency.affirmation_audio_url}
+								color="!bg-blue-violet"
+							/>
+						)}
+
+						{state.preferences.relaxingSound && (
+							<AudioPlayer
+								id="audioOceanWaves"
+								src={oceanWaves}
+								color="!bg-blue-dark"
+							/>
+						)}
 					</div>
 					<ButtonMain
 						idButton="finish-session"
@@ -83,9 +89,15 @@ export default function Seance() {
 						}}
 					/>
 				</div>
-		{isModalOpen && <Modal id={id} initialStep={4} onClose={() => setIsModalOpen(false)} />}
+				{isModalOpen && (
+					<Modal
+						id={id}
+						initialStep={4}
+						newNoteBefore={state.noteBefore}
+						onClose={() => setIsModalOpen(false)}
+					/>
+				)}
 			</div>
-
 		</>
 	);
 }
