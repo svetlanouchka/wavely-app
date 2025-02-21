@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 
-const initialState = {
-    step: 1,
+const initialState = (initialStep = 1) => ({
+    step: initialStep,
     noteBefore: 5, 
     noteAfter: 5,
     preferences: {
@@ -11,7 +11,7 @@ const initialState = {
     }, 
     review: 0,
     comment: "",
-};
+});
 
 function reducer(state, action) {
     switch (action.type) {
@@ -36,8 +36,8 @@ function reducer(state, action) {
     }
 }
 
-export default function useSessionFlow() {
-    const [state, dispatch] = useReducer(reducer, initialState);
+export default function useSessionFlow(initialStep = 1) {
+    const [state, dispatch] = useReducer(reducer, initialState(initialStep));
 
     const nextStep = () => dispatch({ type: "NEXT_STEP" });
     const prevStep = () => dispatch({ type: "PREV_STEP" });

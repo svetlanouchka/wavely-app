@@ -112,7 +112,7 @@ export default function FrequencyPage () {
                 ))}
             </div>
         </div>
-        {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} />}
+        {isModalOpen && <Modal id={id} onClose={() => setIsModalOpen(false)} />}
     </div>
             
 

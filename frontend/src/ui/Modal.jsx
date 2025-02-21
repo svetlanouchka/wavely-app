@@ -5,7 +5,7 @@ import StepStressEvaluation from '../components/Modals/StepStressEvaluation';
 import StepPreferences from '../components/Modals/StepPreferences';
 import StepPostSession from '../components/Modals/StepPostSession';
 
-export default function Modal({ onClose }) {
+export default function Modal({ id, onClose, initialStep = 1 }) {
     const {
         state, 
         nextStep,
@@ -16,7 +16,7 @@ export default function Modal({ onClose }) {
         setReview,
         setComment,
         reset,
-    } = useSessionFlow();
+    } = useSessionFlow(initialStep);
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-blue-dark/45 backdrop-blur-sm z-50">
@@ -43,6 +43,7 @@ export default function Modal({ onClose }) {
 
             {state.step === 3 && (
                 <StepPreferences
+                id={id}
                 preferences={state.preferences}
                 onToggle={togglePreference}
                 onNext={nextStep}
@@ -63,7 +64,6 @@ export default function Modal({ onClose }) {
                     reset();
                     onClose();
                 }}
-                onPrev={prevStep}
                 />
 
             )}

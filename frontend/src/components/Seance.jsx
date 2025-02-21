@@ -3,10 +3,12 @@ import { useParams } from "react-router-dom";
 import AudioPlayer from "../ui/AudioPlayer";
 import oceanWaves from "../../../backend/public/audio/sea_sound.wav";
 import ButtonMain from "../ui/ButtonMain";
+import Modal from "../ui/Modal";
 
 export default function Seance() {
 	const { id } = useParams();
 	const [frequency, setFrequency] = useState([]);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	useEffect(() => {
 		fetch(`http://localhost:5000/frequencies/${id}`)
@@ -49,28 +51,29 @@ export default function Seance() {
 					</div>
 				</div>
 				<div className="flex flex-col items-center w-full max-w-[480px]">
-					<div className="grid grid-cols-2 w-full">
+					<div className="grid grid-cols-2 w-full gap-3">
 						<div className="col-span-2">
 							<AudioPlayer
 								id="audioFrequency"
 								src={frequency.audio_url}
-								color="!bg-blue-500"
+								color="!bg-blue-light"
 							/>
 						</div>
 						<AudioPlayer
 							id="audioAffirmation"
 							src={frequency.affirmation_audio_url}
-							color="!bg-orange-500"
+							color="!bg-blue-violet"
 						/>
 						<AudioPlayer
 							id="audioOceanWaves"
 							src={oceanWaves}
-							color="!bg-yellow-500"
+							color="!bg-blue-dark"
 						/>
 					</div>
 					<ButtonMain
 						idButton="finish-session"
 						text="Terminer"
+						onClick={() => setIsModalOpen(true)}
 						style={{
 							backgroundColor: "#C1FF72",
 							color: "#000000",
@@ -80,7 +83,9 @@ export default function Seance() {
 						}}
 					/>
 				</div>
+		{isModalOpen && <Modal id={id} initialStep={4} onClose={() => setIsModalOpen(false)} />}
 			</div>
+
 		</>
 	);
 }
