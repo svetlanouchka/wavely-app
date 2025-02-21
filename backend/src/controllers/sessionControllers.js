@@ -35,7 +35,14 @@ const add = (req, res) => {
 	models.session
 		.insert(session)
 		.then(([result]) => {
-			res.location(`/users/${result.insertId}`).sendStatus(201);
+			res
+				.location(`/sessions/${result.insertId}`)
+				.status(201)
+				.json({
+					message: "Session terminée",
+					id: result.insertId,
+					data: session,
+				});
 		})
 		.catch((err) => {
 			console.error(err);
