@@ -29,5 +29,5 @@ export default function StepPostSession({ note, onChangeNote, review, onChangeRe
             <FieldComment value={comment} onChange={onChangeComment} />
             <ButtonMain text="Valider" onClick={onComplete} />
     </div>
-    )
+    );
 }
