@@ -41,7 +41,7 @@ export default function Modal({ id, onClose, newNoteBefore, initialStep = 1 }) {
 
 	return (
 		<div className="fixed inset-0 flex items-center justify-center bg-blue-dark/45 backdrop-blur-sm z-50">
-			<div className="bg-green-light px-20 py-6 rounded-sm max-w-lg relative animate-fadeIn">
+			<div className="bg-green-light md:px-20 px-4 md:py-6 py-10 rounded-sm md:max-w-lg w-[80%] relative animate-fadeIn">
 				<button
 					type="button"
 					className="absolute top-3 right-3 w-6 h-6 text-gray-500 hover:text-gray-800"
