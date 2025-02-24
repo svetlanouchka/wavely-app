@@ -95,7 +95,7 @@ export default function SignUpForm() {
 	return (
 		<form
 			onSubmit={formik.handleSubmit}
-			className="w-sm mx-auto bg-gray-light p-6 rounded-sm flex flex-col items-center"
+			className="w-[90%] md:w-[80%] mx-auto bg-gray-light p-6 rounded-sm flex flex-col items-center"
 		>
 			{[
 				{ name: "first_name", type: "text", placeholder: "Prénom" },

@@ -90,12 +90,12 @@ export default function FrequencyPage() {
 			<div className="w-full flex justify-start p-4">
 				{frequency && <Category categoryId={frequency.category_id} />}
 			</div>
-			<div className="flex w-full flex-row items-center gap-20 p-10">
+			<div className="flex flex-col md:flex-row items-center md:gap-20 gap-10 p-10">
 				<div className="bg-gray-light shadow-lg rounded-sm w-full h-full flex justify-center items-center">
 					<img
 						src={frequency?.image_url}
 						alt={frequency?.name}
-						className="w-4/5 h-4/5 object-cover hover:scale-110 duration-300 mx-auto ease-in"
+						className="md:w-4/5 w-[50%] h-4/5 object-cover hover:scale-110 duration-300 mx-auto ease-in"
 					/>
 				</div>
 				<div className="flex w-full h-full">
