@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Righteous&display=swap');
 @import "tailwindcss";
+@plugin 'tailwind-scrollbar';
 
 @theme {
   --font-albert-sans: "Albert Sans", sans-serif;
@@ -30,4 +31,7 @@
   .animate-float {
     animation: float 3s ease-in-out infinite;
   }
+  
 }
+
+
