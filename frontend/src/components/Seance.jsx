@@ -39,7 +39,7 @@ export default function Seance() {
 				<img
 					src={frequency.image_url}
 					alt="Illustration de fréquence"
-					className="w-[15rem]"
+					className="w-[15rem] animate-[float_3s_ease-in-out_infinite]"
 				/>
 				<div className="relative h-[6rem] text-xl overflow-hidden text-white bg-black m-4 px-2 rounded-sm font-albert-sans">
 					<p>{frequency.affirmation}</p>

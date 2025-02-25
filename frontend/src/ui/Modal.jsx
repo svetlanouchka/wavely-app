@@ -5,6 +5,7 @@ import StepStressEvaluation from "../components/Modals/StepStressEvaluation";
 import StepPreferences from "../components/Modals/StepPreferences";
 import StepPostSession from "../components/Modals/StepPostSession";
 
+
 export default function Modal({ id, onClose, newNoteBefore, initialStep = 1 }) {
 	const {
 		state,
