@@ -30,11 +30,16 @@ export default function AboutPage() {
 					approche accessible à tous, grâce aux technologies modernes et à une
 					expérience utilisateur simple et immersive.{" "}
 				</p>
-				<video className="mb-8" autoPlay loop muted>
+				<video
+					className="absolute right-0 max-h-[400px] max-w-screen w-screen object-cover"
+					autoPlay
+					loop
+					muted
+				>
 					<source src={waves} type="video/mp4" />
 				</video>
 			</div>
-			<div>
+			<div className="mt-[68%] md:mt-[60%]">
 				<h2 className="text-3xl font-medium text-center">L'équipe</h2>
 				<div className="flex flex-row gap-4 md:gap-12 my-8">
 					<div>
