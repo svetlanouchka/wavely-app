@@ -4,10 +4,12 @@ import AudioPlayer from "../ui/AudioPlayer";
 import oceanWaves from "../../../backend/public/audio/sea_sound.wav";
 import ButtonMain from "../ui/ButtonMain";
 import Modal from "../ui/Modal";
+import AffirmationScreen from "./AffirmationScreen";
 
 export default function Seance() {
 	const { id } = useParams();
 	const [frequency, setFrequency] = useState([]);
+	const [affirmations, setAffirmations] = useState([]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const location = useLocation();
@@ -18,15 +20,29 @@ export default function Seance() {
 			.then((response) => response.json())
 			.then((data) => {
 				setFrequency(data);
+				setAffirmations(data.affirmation);
 			})
 			.catch((error) =>
 				console.error("Erreur de chargement de la fréquence", error),
 			);
 	}, [id]);
 
+	function splitString(stringToSplit, separator) {
+		const arrayOfString = stringToSplit.split(separator);
+		console.log("Tableau chaine de caractère -->", arrayOfString);
+		return arrayOfString; // 🔥 Ajout du return !
+	}
+
+	const point = ".";
+	const splittedAffirmations =
+		typeof affirmations === "string" ? splitString(affirmations, point) : [];
+
 	return (
 		<>
-			<div className="flex flex-col items-center mx-5" key={frequency.id}>
+			<div
+				className="flex flex-col items-center mx-5 relative"
+				key={frequency.id}
+			>
 				<div className="my-10">
 					<h1 className="text-[2rem] md:text-[3rem] font-righteous text-center mb-10 text-white">
 						{frequency.name}
@@ -41,15 +57,10 @@ export default function Seance() {
 					alt="Illustration de fréquence"
 					className="w-[15rem] animate-[float_3s_ease-in-out_infinite]"
 				/>
-				<div className="relative h-[6rem] text-xl overflow-hidden text-white bg-black m-4 px-2 rounded-sm font-albert-sans">
-					<p>{frequency.affirmation}</p>
-					<div className="">
-						<span className="bg-gray-400 absolute z-10 w-full h-full top-0 right-0 opacity-40" />
-						<p className="absolute  bg-black text-center top-[0.8rem] left-1/2 transform -translate-x-1/2 z-20 p-2 rounded-lg text-green-header">
-							Cliquez pour faire défiler
-						</p>
-					</div>
-				</div>
+				<AffirmationScreen
+					splitString={splitString}
+					splittedAffirmations={splittedAffirmations}
+				/>
 				{/* </div> */}
 				<div className="flex flex-col items-center w-full max-w-[480px]">
 					<div className="grid grid-cols-2 w-full gap-3">
