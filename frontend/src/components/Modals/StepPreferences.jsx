@@ -1,20 +1,30 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ButtonMain from "../../ui/ButtonMain";
 import PrevStepButton from "../../ui/PrevStepButton";
-import NextStepButton from "../../ui/NextStepButton";
+import LoadingOverlay from "../../ui/LoadingOverlay";
+
 
 export default function StepPreferences({
 	id,
 	state,
 	onToggle,
 	onPrev,
-	onNext,
 }) {
+	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
+
 	const handleNavigate = () => {
+		setIsLoading(true);
+		setTimeout(() => {
+
 		navigate(`/frequencies/${id}/seance`, { state });
+	}, 3000);
 	};
+
 	return (
+		<>
+		{isLoading && <LoadingOverlay />}
 		<div className="flex flex-col items-center justify-center h-full space-y-4">
 			<p className="text-mg text-center font-albert-sans font-semibold">
 				Choisissez vos préférences pour cette séance.
@@ -54,5 +64,6 @@ export default function StepPreferences({
 			<PrevStepButton onClick={onPrev} />
 			<ButtonMain text="Lancer la séance" onClick={handleNavigate} />
 		</div>
+		</>
 	);
 }
