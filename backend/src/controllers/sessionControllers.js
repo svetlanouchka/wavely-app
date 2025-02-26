@@ -73,7 +73,6 @@ const GetAllSessionsByUser = (req, res, next) => {
 	models.session
 		.findAllSessionsByUserId(id)
 		.then(([rows]) => {
-			console.log(rows);
 			res.send(rows);
 		})
 		.catch((err) => {

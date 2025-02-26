@@ -28,7 +28,7 @@ class SessionManager extends AbstractManager {
 
 	findAllSessionsByUserId(id) {
 		return this.database.query(
-			`SELECT s.created_at, f.name, f.image_url FROM ${this.table} AS s JOIN frequency AS f ON f.id = s.frequency_id WHERE s.user_id = ?`,
+			`SELECT s.created_at, s.note_before, s.note_after, s.comment, f.name, f.description, f.image_url FROM ${this.table} AS s JOIN frequency AS f ON f.id = s.frequency_id WHERE s.user_id = ?;`,
 			[id],
 		);
 	}
