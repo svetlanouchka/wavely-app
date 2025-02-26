@@ -35,14 +35,11 @@ const add = (req, res) => {
 	models.session
 		.insert(session)
 		.then(([result]) => {
-			res
-				.location(`/sessions/${result.insertId}`)
-				.status(201)
-				.json({
-					message: "Session terminée",
-					id: result.insertId,
-					data: session,
-				});
+			res.location(`/sessions/${result.insertId}`).status(201).json({
+				message: "Session terminée",
+				id: result.insertId,
+				data: session,
+			});
 		})
 		.catch((err) => {
 			console.error(err);
@@ -70,9 +67,25 @@ const edit = async (req, res) => {
 		});
 };
 
+const GetAllSessionsByUser = (req, res, next) => {
+	const id = Number.parseInt(req.params.id, 10);
+
+	models.session
+		.findAllSessionsByUserId(id)
+		.then(([rows]) => {
+			console.log(rows);
+			res.send(rows);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.sendStatus(500);
+		});
+};
+
 module.exports = {
 	browse,
 	add,
 	edit,
 	read,
+	GetAllSessionsByUser,
 };
