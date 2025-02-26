@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 
 export default function AffirmationScreen({
 	splittedAffirmations,
 	splitString,
 }) {
-	const [phraseIndex, setPhraseIndex] = useState(0);
-
-	// const textVariants = {
-	// 	hidden: { opacity: 0, y: 20 },
-	// 	visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-	// };
+	const { scrollY } = useScroll();
 
 	const newAffirmation = splittedAffirmations.map((line, index) => (
 		<span key={index}>
@@ -20,12 +15,12 @@ export default function AffirmationScreen({
 		</span>
 	));
 
-	console.log(newAffirmation);
+	console.log(scrollY);
 
 	return (
-		<div className="text-white h-[6rem] scrollbar-thin scrollbar-thumb-sky-700 scrollbar-track-sky-300 overflow-y-scroll m-4 px-2 rounded-sm font-albert-sans">
-			<div className="mx-auto h-[5rem] md:w-[50%]">
-				<p className="text-2xl mb-8">{newAffirmation}</p>
+		<div className="text-white bottom-0 z-10 mx-auto scrollbar-none scrollbar-thumb-sky-700 scrollbar-track-sky-300 overflow-y-scroll m-4 px-2 rounded-md font-albert-sans w-full md:w-[30rem] h-[8.5rem] border-amber-50 ">
+			<div className="mx-auto h-[5rem] ">
+				<p className="text-2xl">{newAffirmation}</p>
 			</div>
 
 			{/* <motion.div
