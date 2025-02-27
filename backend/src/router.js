@@ -25,9 +25,11 @@ router.post(
 	verifyPassword,
 );
 
-router.get("/my-profile", verifyToken, userControllers.getUserById);
+router.get("/me", verifyToken, userControllers.getUserById);
 
 router.post("/contact", contactControllers.send);
+
+router.get("/users/:id/sessions", sessionControllers.GetAllSessionsByUser);
 
 router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);

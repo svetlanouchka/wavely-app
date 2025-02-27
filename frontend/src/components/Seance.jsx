@@ -52,15 +52,17 @@ export default function Seance() {
 					</p>
 				</div>
 				{/* <div className="bg-gray-light shadow-lg rounded-md max-w-[30rem] flex flex-col justify-center items-center mb-10"> */}
-				<img
-					src={frequency.image_url}
-					alt="Illustration de fréquence"
-					className="w-[15rem] animate-[float_3s_ease-in-out_infinite]"
-				/>
-				<AffirmationScreen
-					splitString={splitString}
-					splittedAffirmations={splittedAffirmations}
-				/>
+				<div className="flex flex-col items-center justify-center md:w-[70vw]">
+					<img
+						src={frequency.image_url}
+						alt="Illustration de fréquence"
+						className="w-[15rem] z-20 animate-[float_3s_ease-in-out_infinite]"
+					/>
+					<AffirmationScreen
+						splitString={splitString}
+						splittedAffirmations={splittedAffirmations}
+					/>
+				</div>
 				{/* </div> */}
 				<div className="flex flex-col items-center w-full max-w-[480px]">
 					<div className="grid grid-cols-2 w-full gap-3">
@@ -97,6 +99,7 @@ export default function Seance() {
 							borderRadius: "50px",
 							width: "200px",
 							marginTop: "6rem",
+							marginBottom: "2rem",
 						}}
 					/>
 				</div>
