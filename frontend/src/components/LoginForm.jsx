@@ -1,13 +1,15 @@
 import { useFormik } from "formik";
 import ButtonMain from "../ui/ButtonMain";
 import * as Yup from "yup";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 
 export default function LoginForm() {
 	const [loadingButton, setLoadingButton] = useState();
 	const [errorMessage, setErrorMessage] = useState("");
 	const navigate = useNavigate();
+	const { setUserId } = useUser();
 
 	const formik = useFormik({
 		initialValues: {
@@ -36,6 +38,13 @@ export default function LoginForm() {
 				}
 				const data = await response.json();
 				console.log(data);
+
+				const { token, user } = data;  
+				setUserId(user.id);
+				localStorage
+					.setItem("token", token)
+				console.log("user.id", user.id);
+				console.log("token", token);
 				resetForm();
 				navigate("/frequencies");
 			} catch (error) {

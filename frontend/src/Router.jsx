@@ -10,6 +10,7 @@ import ContactPage from "@pages/ContactPage";
 import SignUpPage from "@pages/SignUpPage";
 import LoginPage from "@pages/LoginPage";
 import SeancePage from "@pages/SeancePage";
+import MyProfilePage from "@pages/MyProfilePage";
 
 function AppLayout() {
 	return (
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
 			{ path: "/contact", element: <ContactPage /> },
 			{ path: "/signup", element: <SignUpPage /> },
 			{ path: "/login", element: <LoginPage /> },
+			{ path: "/my-profile", element: <MyProfilePage /> },
 		],
 	},
 ]);

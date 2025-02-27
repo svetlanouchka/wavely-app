@@ -2,13 +2,14 @@ import "./App.css";
 import HomePage from "./pages/HomePage";
 import Router from "./Router";
 import { RouterProvider } from "react-router-dom";
+import { UserProvider } from "./context/UserContext";
 
 function App() {
 	return (
 		<>
-			<RouterProvider router={Router}>
-				<HomePage />
-			</RouterProvider>
+			<UserProvider>
+				<RouterProvider router={Router}/>
+			</UserProvider>
 		</>
 	);
 }
