@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import LogoW from "./LogoW";
 import ButtonLaunch from "../ui/ButtonLaunch";
+import { useUser } from "../context/UserContext";
 
 export default function NavDesktop({ isHome }) {
+
+	const { userId } = useUser();
+
 	return (
 		<div className="hidden md:flex md:gap-[2rem] md:px-[1rem] md:whitespace-nowrap">
 			<div
@@ -32,7 +36,16 @@ export default function NavDesktop({ isHome }) {
 						<p className="text-gray cursor-pointer">Contact</p>
 					</button>
 				</Link>
+				{userId ? (
+					<Link to="/my-profile">
+						<button type="button" className="flex items-center gap-2 border-1 border-blue-violet rounded-full p-2">
+							<p className="text-blue-violet cursor-pointer">Mon Profil</p>
+						</button>
+					</Link>
+				) : (
+
 				<ButtonLaunch />
+				)}
 			</div>
 		</div>
 	);
