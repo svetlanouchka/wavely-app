@@ -25,6 +25,13 @@ class SessionManager extends AbstractManager {
 			[session.comment, session.id],
 		);
 	}
+
+	findAllSessionsByUserId(id) {
+		return this.database.query(
+			`SELECT s.created_at, s.note_before, s.note_after, s.comment, f.name, f.description, f.image_url FROM ${this.table} AS s JOIN frequency AS f ON f.id = s.frequency_id WHERE s.user_id = ?;`,
+			[id],
+		);
+	}
 }
 
 module.exports = SessionManager;
