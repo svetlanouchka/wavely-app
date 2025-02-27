@@ -1,26 +1,57 @@
+import { useEffect, useState } from "react";
 import Rectangle from "@components/Rectangle";
 import ButtonMain from "../ui/ButtonMain";
 import { Link } from "react-router-dom";
+import playButton from "../assets/Play_blur.png";
 
 export default function UserPage() {
+	const [sessionsData, setSessionsData] = useState([]);
+	useEffect(() => {
+		fetch("http://localhost:5000/users/1/sessions")
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+
+				setSessionsData(data);
+			})
+			.catch((error) =>
+				console.error("Erreur de chargement de la fréquence", error),
+			);
+	}, []);
+
 	return (
 		<div className="">
 			<div className="flex flex-col items-center justify-center">
-				<h1 className="my-8 font-righteous text-3xl md:text-2xl text-center">
+				<h1 className="mt-8 mx-4 mb-12 font-albert-sans font-medium text-3xl md:text-2xl text-center">
 					Bienvenue dans votre espace de bien-être
 				</h1>
-				<div className="w-[80%] max-w-[20rem]">
+				<div className="mx-6 max-w-[26rem]">
 					<Link to="/frequencies">
-						<div className="font-albert-sans border-1 border-gray-400 rounded-lg bg-gray-light px-8 py-4 text-center">
-							Lancer nouvelle séance
+						<div className="flex flex-row items-center justify-center font-albert-sans border border-gray-400 rounded-lg bg-gray-light text-center pr-4.5 transition-transform duration-200 hover:scale-105">
+							<img
+								className="h-[70px]"
+								type="button"
+								src={playButton}
+								alt="Play"
+							/>
+							<p>Lancer nouvelle séance</p>
 						</div>
 					</Link>
 				</div>
-				<h2 className="font-albert-sans text-2xl my-8">Mes séances passées</h2>
-				<div className="w-[80%] max-w-[20rem]">
-					<Rectangle />
-					<Rectangle />
-					<Rectangle />
+				<h2 className="font-albert-sans text-2xl mt-8 mb-12">
+					Mes séances passées
+				</h2>
+				<div className="mx-6 max-w-[26rem]">
+					{sessionsData.map((session) => {
+						return (
+							<Rectangle
+								key={session.created_at}
+								date={session.created_at}
+								name={session.name}
+								pic={session.image_url}
+							/>
+						);
+					})}
 				</div>
 			</div>
 			<div className="flex justify-center">
