@@ -3,9 +3,18 @@ import Rectangle from "@components/Rectangle";
 import ButtonMain from "../ui/ButtonMain";
 import { Link } from "react-router-dom";
 import playButton from "../assets/Play_blur.png";
+import ModalSession from "@components/ModalSession";
 
 export default function UserPage() {
 	const [sessionsData, setSessionsData] = useState([]);
+	const [showModal, setShowModal] = useState(false);
+	const [sessionId, setSessionId] = useState([]);
+
+	const handleClickModal = (id) => {
+		setShowModal(true);
+		setSessionId(id);
+	};
+
 	useEffect(() => {
 		fetch("http://localhost:5000/users/1/sessions")
 			.then((response) => response.json())
@@ -19,8 +28,10 @@ export default function UserPage() {
 			);
 	}, []);
 
+	console.log(sessionId);
+
 	return (
-		<div className="">
+		<div>
 			<div className="flex flex-col items-center justify-center">
 				<h1 className="mt-8 mx-4 mb-12 font-albert-sans font-medium text-3xl md:text-2xl text-center">
 					Bienvenue dans votre espace de bien-être
@@ -45,17 +56,18 @@ export default function UserPage() {
 					{sessionsData.map((session) => {
 						return (
 							<Rectangle
-								key={session.created_at}
+								key={session.id}
 								date={session.created_at}
 								name={session.name}
 								pic={session.image_url}
+								onClick={() => handleClickModal(session.id)}
 							/>
 						);
 					})}
 				</div>
 			</div>
 			<div className="flex justify-center">
-				<Link to="/">
+				<Link to="/my-profile">
 					<ButtonMain
 						text="Mon profil utilisateur"
 						style={{
@@ -68,6 +80,15 @@ export default function UserPage() {
 					/>
 				</Link>
 			</div>
+			{showModal && (
+				<ModalSession
+					sessionsData={sessionsData}
+					key={sessionId}
+					idSession={sessionId}
+					showModal={showModal}
+					setShowModal={setShowModal}
+				/>
+			)}
 		</div>
 	);
 }
