@@ -141,6 +141,7 @@ export default function ModifyProfil({ onClose }) {
                         </div>
                     ))}
                     <ButtonMain idButton="validation-btn" type="submit" text="Valider" />
+
                 </form>
                 </div>
                 </div>

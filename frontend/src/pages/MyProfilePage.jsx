@@ -3,6 +3,7 @@ import { useUser } from "../context/UserContext";
 import UserPhoto from "../assets/user.png";
 import { format } from "date-fns";
 import ButtonMain from "../ui/ButtonMain";
+import LogoutButton from "../ui/LogoutButton";
 import ModifyProfil from "../components/Modals/ModifyProfil";
 
 export default function MyProfilePage() {
@@ -58,6 +59,7 @@ export default function MyProfilePage() {
                 text="Modifier"
                 onClick={() => setIsModalOpen(true)}/>
             {isModalOpen && <ModifyProfil onClose={() => setIsModalOpen(false)} />}
+            <LogoutButton />
         </div>
         </>
     );
