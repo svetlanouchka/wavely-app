@@ -38,26 +38,26 @@ export default function ModalSession({
 					Historique de votre séance
 				</h1>
 				<p className="mb-2">
-					<span className="font-medium">Nom de la fréquence :</span>{" "}
+					<span className="font-medium">Nom de la fréquence&nbsp;:</span>{" "}
 					{filteredData[0].name}
 				</p>
 				<p className="mb-2">
-					<span className="font-medium">Date :</span> {newDate}
+					<span className="font-medium">Date&nbsp;:</span> {newDate}
 				</p>
 				<p className="mb-2">
 					<span className="font-medium">
-						Évaluation du stress avant la séance :
+						Évaluation du stress avant la séance&nbsp;:
 					</span>{" "}
 					{session.note_before}
 				</p>
 				<p className="mb-2">
 					<span className="font-medium">
-						Évaluation du stress après la séance :
+						Évaluation du stress après la séance&nbsp;:
 					</span>{" "}
 					{session.note_after}
 				</p>
 				<p>
-					<span className="font-medium">Vos impressions :</span>{" "}
+					<span className="font-medium">Vos impressions&nbsp;:</span>{" "}
 				</p>
 				<div className="border-1 border-gray-500 h-18 w-[calc(100%-8px)] m-1 overflow-scroll overflow-x-hidden">
 					<p className="p-1">{session.comment}</p>
