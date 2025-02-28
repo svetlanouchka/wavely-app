@@ -1,9 +1,9 @@
 ![Bannière wavely](public/Banner.png)
 
 ## L'équipe
-| ![Svetlana Preux-Nigay](public/Svet.png) | ![Mattias Guittari](public/Matt.png) | ![Dounia Bouhayouf](public/Dounia.png) |
+| ![Svetlana Preux-Nigay](public/Svet.png) | ![Mattias Guittari](public/Matt.png) |
 |:----------------------------------------:|:------------------------------------:|:---------------------------------------:|
-| Svetlana Preux-Nigay                     | Mattias Guittari                     | Dounia Bouhayouf                        |
+| Svetlana Preux-Nigay                     | Mattias Guittari                     | 
 
 ## Le projet
 
