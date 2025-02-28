@@ -16,10 +16,10 @@ const read = (req, res) => {
 	models.frequency
 		.find(req.params.id)
 		.then(([rows]) => {
-			if (rows[0] == null) {
-				res.sendStatus(404);
+			if (!rows[0]) {
+				res.status(404).json("404 Not found");
 			} else {
-				res.json(rows[0]);
+				res.send(rows[0]);
 			}
 		})
 		.catch((err) => {

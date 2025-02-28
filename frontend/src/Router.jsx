@@ -12,7 +12,7 @@ import LoginPage from "@pages/LoginPage";
 import SeancePage from "@pages/SeancePage";
 import MyProfilePage from "@pages/MyProfilePage";
 import UserPage from "@pages/UserPage";
-
+import Status404 from "@pages/Status404";
 
 function AppLayout() {
 	return (
@@ -39,6 +39,7 @@ const router = createBrowserRouter([
 			{ path: "/myspace", element: <UserPage /> },
 		],
 	},
+	{ path: "*", element: <Status404 /> },
 ]);
 
 export default router;

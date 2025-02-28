@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Frequency from "../components/Frequency";
 import Category from "../components/Category";
 import ButtonMain from "../ui/ButtonMain";
@@ -9,14 +9,23 @@ import Modal from "../ui/Modal";
 
 export default function FrequencyPage() {
 	const { id } = useParams();
+	console.info(typeof id);
 	const [frequency, setFrequency] = useState(null);
 	const [recommendedFrequencies, setRecommendedFrequencies] = useState([]);
 	const [tags, setTags] = useState([]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
+	const navigate = useNavigate();
+
 	useEffect(() => {
-		fetch(`http://localhost:5000/frequencies/${id}`)
-			.then((response) => response.json())
+		fetch(`http://localhost:5000/frequencies/${Number(id)}`)
+			.then((response) => {
+				if (response.status === 404) {
+					navigate("/404");
+				} else {
+					return response.json();
+				}
+			})
 			.then((frequencyData) => {
 				setFrequency(frequencyData);
 
