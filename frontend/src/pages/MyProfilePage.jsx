@@ -25,8 +25,10 @@ export default function MyProfilePage() {
             }
         }
 
-        getUser();
-    }, [userId]);
+        if (userId && !isModalOpen) {
+            getUser();
+        }
+    }, [userId, isModalOpen]);
 
     if (loading) return <p>Chargement de vos données...</p>;
     if (error) return <p>Error: {error.message}</p>;
