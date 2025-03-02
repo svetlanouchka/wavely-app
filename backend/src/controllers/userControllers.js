@@ -61,6 +61,8 @@ const edit = async (req, res) => {
 
 	user.id = Number.parseInt(req.params.id, 10);
 
+	console.log("U", user);
+
 	models.user
 		.update(user)
 		.then(([result]) => {
@@ -143,7 +145,6 @@ const destroy = (req, res) => {
 
 const getUserByEmailWithPassword = (req, res, next) => {
 	const { email } = req.body;
-	console.log("email -->", email);
 
 	models.user
 		.findUserByEmail(email)
