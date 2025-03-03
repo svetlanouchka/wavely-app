@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import UserPhoto from "../assets/user.png";
 import { format } from "date-fns";
@@ -7,6 +8,7 @@ import LogoutButton from "../ui/LogoutButton";
 import ModifyProfil from "../components/Modals/ModifyProfil";
 
 export default function MyProfilePage() {
+    const navigate = useNavigate();
     const { userId } = useUser();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -59,6 +61,18 @@ export default function MyProfilePage() {
                 text="Modifier"
                 onClick={() => setIsModalOpen(true)}/>
             {isModalOpen && <ModifyProfil onClose={() => setIsModalOpen(false)} />}
+            <ButtonMain
+                text="Mon espace"
+                    style={{
+                        backgroundColor: "#0356fc",
+                        color: "white",
+                        borderRadius: "1rem",
+                        padding: "1rem",
+                    }}
+                onClick={() => navigate("/myspace")}
+            />
+                
+            
             <LogoutButton />
         </div>
         </>
