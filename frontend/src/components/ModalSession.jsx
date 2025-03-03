@@ -15,8 +15,6 @@ export default function ModalSession({
 		fetch(`http://localhost:5000/sessions/${idSession}`)
 			.then((response) => response.json())
 			.then((session) => {
-				console.log(session);
-
 				setSession(session);
 			})
 			.catch((error) =>

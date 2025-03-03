@@ -46,21 +46,26 @@ router.get("/tags/:id/frequencies", frequencyTagControllers.findFrequencyByTag);
 
 // Routes protégées
 
-router.use(verifyToken);
+// router.use(verifyToken);
 
-router.get("/me", userControllers.getUserById);
+router.get("/me", verifyToken, userControllers.getUserById);
 
-router.get("/users/:id", verifyId, userControllers.read);
-router.patch("/users/:id", verifyId, userControllers.edit);
-router.delete("/users/:id", verifyId, userControllers.destroy);
+router.get("/users/:id", userControllers.read);
+router.patch("/users/:id", verifyToken, verifyId, userControllers.edit);
+
 router.patch(
 	"/users/:id/avatar",
-	verifyId,
+	verifyToken,
 	uploadPicture,
 	userControllers.editAvatar,
 );
 
-router.get("/users/:id/sessions", sessionControllers.GetAllSessionsByUser);
+router.get(
+	"/users/:id/sessions",
+	verifyToken,
+	verifyId,
+	sessionControllers.GetAllSessionsByUser,
+);
 
 router.get("/sessions/:id", sessionControllers.read);
 router.post("/sessions", sessionControllers.add);
@@ -87,5 +92,6 @@ router.post("/items", itemControllers.add);
 router.delete("/items/:id", itemControllers.destroy);
 
 router.get("/users", userControllers.browse);
+router.delete("/users/:id", verifyId, userControllers.destroy);
 
 module.exports = router;

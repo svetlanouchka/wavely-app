@@ -5,12 +5,14 @@ import oceanWaves from "../../../backend/public/audio/sea_sound.wav";
 import ButtonMain from "../ui/ButtonMain";
 import Modal from "../ui/Modal";
 import AffirmationScreen from "./AffirmationScreen";
+import { useUser } from "../context/UserContext";
 
 export default function Seance() {
 	const { id } = useParams();
 	const [frequency, setFrequency] = useState([]);
 	const [affirmations, setAffirmations] = useState([]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const { userId } = useUser();
 
 	const location = useLocation();
 	const state = location.state;
@@ -106,6 +108,7 @@ export default function Seance() {
 				{isModalOpen && (
 					<Modal
 						id={id}
+						userId={userId}
 						initialStep={4}
 						newNoteBefore={state.noteBefore}
 						onClose={() => setIsModalOpen(false)}

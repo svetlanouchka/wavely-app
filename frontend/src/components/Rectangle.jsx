@@ -1,13 +1,11 @@
 import { format, parseISO } from "date-fns";
 
-export default function Rectangle({ key, date, name, pic, onClick }) {
+export default function Rectangle({ id, date, name, pic, onClick }) {
 	const newDate = format(parseISO(date), "dd/MM/yyyy HH:mm");
-
-	console.log(newDate);
 
 	return (
 		<div
-			key={key}
+			key={id}
 			className="flex flex-row justify-between pl-6 items-center gap-2 font-albert-sans border-1 border-gray-400 rounded-lg bg-gray-light py-4 text-left mb-4 transition-transform duration-200 hover:scale-105 cursor-pointer"
 			onClick={onClick}
 			onKeyUp={onClick}

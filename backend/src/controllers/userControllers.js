@@ -5,7 +5,6 @@ const browse = (req, res) => {
 	models.user
 		.findAll()
 		.then(([rows]) => {
-			console.log(rows);
 			res.send(rows);
 		})
 		.catch((err) => {
@@ -37,7 +36,7 @@ const getUserById = (req, res) => {
 		.find(id)
 		.then(([rows]) => {
 			if (rows[0] == null) {
-				res.sendStatus(404);
+				res.status(404).json("Not Found");
 			} else {
 				const userProfile = {
 					id: rows[0].id,
@@ -60,8 +59,6 @@ const edit = async (req, res) => {
 	const user = req.body;
 
 	user.id = Number.parseInt(req.params.id, 10);
-
-	console.log("U", user);
 
 	models.user
 		.update(user)

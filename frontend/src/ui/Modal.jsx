@@ -5,8 +5,13 @@ import StepStressEvaluation from "../components/Modals/StepStressEvaluation";
 import StepPreferences from "../components/Modals/StepPreferences";
 import StepPostSession from "../components/Modals/StepPostSession";
 
-
-export default function Modal({ id, onClose, newNoteBefore, initialStep = 1 }) {
+export default function Modal({
+	id,
+	userId,
+	onClose,
+	newNoteBefore,
+	initialStep = 1,
+}) {
 	const {
 		state,
 		nextStep,
@@ -29,7 +34,7 @@ export default function Modal({ id, onClose, newNoteBefore, initialStep = 1 }) {
 				review: state.review,
 				comment: state.comment,
 				frequency_id: id,
-				user_id: 1,
+				user_id: userId,
 			}),
 		});
 
