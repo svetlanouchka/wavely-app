@@ -70,6 +70,8 @@ const edit = async (req, res) => {
 const GetAllSessionsByUser = (req, res, next) => {
 	const id = Number.parseInt(req.params.id, 10);
 
+	console.info("id controller -->", id);
+
 	models.session
 		.findAllSessionsByUserId(id)
 		.then(([rows]) => {

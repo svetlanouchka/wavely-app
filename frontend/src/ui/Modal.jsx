@@ -9,9 +9,18 @@ import StepPostSession from "../components/Modals/StepPostSession";
 import ButtonMain from "./ButtonMain";
 
 
-export default function Modal({ id, onClose, newNoteBefore, initialStep = 1 }) {
+export default function Modal({
+	id,
+	userId,
+	onClose,
+	newNoteBefore,
+	initialStep = 1,
+}) {
+
+
 	const navigate = useNavigate();
 	const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
+
 	const {
 		state,
 		nextStep,
@@ -34,7 +43,7 @@ export default function Modal({ id, onClose, newNoteBefore, initialStep = 1 }) {
 				review: state.review,
 				comment: state.comment,
 				frequency_id: id,
-				user_id: 1,
+				user_id: userId,
 			}),
 		});
 

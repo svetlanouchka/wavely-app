@@ -17,7 +17,12 @@ const {
 	hashPassword,
 	verifyPassword,
 	verifyToken,
+	verifyId,
 } = require("./Middlewares/auth");
+
+// Routes publiques
+
+router.post("/contact", contactControllers.send);
 
 router.post(
 	"/login",
@@ -25,18 +30,60 @@ router.post(
 	verifyPassword,
 );
 
+router.post("/users", validateUser, hashPassword, userControllers.add);
+
+router.get("/frequencies", frequencyControllers.browse);
+router.get("/frequencies/:id", frequencyControllers.read);
+
+router.get("/categories", categoryControllers.browse);
+router.get("/categories/:id", categoryControllers.read);
+
+router.get("/tags", tagControllers.browse);
+router.get("/tags/:id", tagControllers.read);
+
+router.get("/frequencies/:id/tags", frequencyTagControllers.findTagByFrequency);
+router.get("/tags/:id/frequencies", frequencyTagControllers.findFrequencyByTag);
+
+// Routes protégées
+
+// router.use(verifyToken);
+
 router.get("/me", verifyToken, userControllers.getUserById);
 
-router.post("/contact", contactControllers.send);
-
-router.get("/users/:id/sessions", sessionControllers.GetAllSessionsByUser);
-
-router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);
-router.post("/users", validateUser, hashPassword, userControllers.add);
-router.patch("/users/:id", userControllers.edit);
-router.patch("/users/:id/avatar", uploadPicture, userControllers.editAvatar);
-router.delete("/users/:id", userControllers.destroy);
+router.patch("/users/:id", verifyToken, verifyId, userControllers.edit);
+
+router.patch(
+	"/users/:id/avatar",
+	verifyToken,
+	uploadPicture,
+	userControllers.editAvatar,
+);
+
+router.get(
+	"/users/:id/sessions",
+	verifyToken,
+	verifyId,
+	sessionControllers.GetAllSessionsByUser,
+);
+
+router.get("/sessions/:id", sessionControllers.read);
+router.post("/sessions", sessionControllers.add);
+
+// Routes admin
+
+router.put("/frequencies/:id", frequencyControllers.edit);
+router.post("/frequencies", frequencyControllers.add);
+router.delete("/frequencies/:id", frequencyControllers.destroy);
+
+router.get("/sessions", sessionControllers.browse);
+router.put("/sessions/:id", sessionControllers.edit);
+
+router.put("/categories/:id", categoryControllers.edit);
+router.post("/categories", categoryControllers.add);
+router.delete("/categories/:id", categoryControllers.destroy);
+
+// Routes useless
 
 router.get("/items", itemControllers.browse);
 router.get("/items/:id", itemControllers.read);
@@ -44,27 +91,7 @@ router.put("/items/:id", itemControllers.edit);
 router.post("/items", itemControllers.add);
 router.delete("/items/:id", itemControllers.destroy);
 
-router.get("/frequencies", frequencyControllers.browse);
-router.get("/frequencies/:id", frequencyControllers.read);
-router.put("/frequencies/:id", frequencyControllers.edit);
-router.post("/frequencies", frequencyControllers.add);
-router.delete("/frequencies/:id", frequencyControllers.destroy);
-
-router.get("/sessions", sessionControllers.browse);
-router.get("/sessions/:id", sessionControllers.read);
-router.post("/sessions", sessionControllers.add);
-router.put("/sessions/:id", sessionControllers.edit);
-
-router.get("/categories", categoryControllers.browse);
-router.get("/categories/:id", categoryControllers.read);
-router.put("/categories/:id", categoryControllers.edit);
-router.post("/categories", categoryControllers.add);
-router.delete("/categories/:id", categoryControllers.destroy);
-
-router.get("/tags", tagControllers.browse);
-router.get("/tags/:id", tagControllers.read);
-
-router.get("/frequencies/:id/tags", frequencyTagControllers.findTagByFrequency);
-router.get("/tags/:id/frequencies", frequencyTagControllers.findFrequencyByTag);
+router.get("/users", userControllers.browse);
+router.delete("/users/:id", verifyId, userControllers.destroy);
 
 module.exports = router;
