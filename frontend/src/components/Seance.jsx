@@ -18,7 +18,7 @@ export default function Seance() {
 	const state = location.state;
 
 	useEffect(() => {
-		fetch(`http://localhost:5000/frequencies/${id}`)
+		fetch(`${import.meta.env.VITE_BACKEND_URL}/frequencies/${id}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setFrequency(data);

@@ -24,13 +24,16 @@ export default function LoginForm() {
 			setLoadingButton(true);
 			setErrorMessage("");
 			try {
-				const response = await fetch("http://localhost:5000/login", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
+				const response = await fetch(
+					`${import.meta.env.VITE_BACKEND_URL}/login`,
+					{
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify(values),
 					},
-					body: JSON.stringify(values),
-				});
+				);
 
 				if (!response.ok) {
 					setErrorMessage("Email ou mot de passe incorrect.");

@@ -72,13 +72,16 @@ export default function SignUpForm() {
 			delete valuesTransformed.confirmPassword;
 			console.log("new format ???", valuesTransformed);
 			try {
-				const response = await fetch("http://localhost:5000/users", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
+				const response = await fetch(
+					`${import.meta.env.VITE_BACKEND_URL}/users`,
+					{
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify(valuesTransformed),
 					},
-					body: JSON.stringify(valuesTransformed),
-				});
+				);
 
 				if (!response.ok) {
 					console.log(response);

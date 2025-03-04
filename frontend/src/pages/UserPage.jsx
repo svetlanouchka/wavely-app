@@ -21,7 +21,7 @@ export default function UserPage() {
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
-		fetch(`http://localhost:5000/users/${id}/sessions`, {
+		fetch(`${import.meta.env.VITE_BACKEND_URL}/users/${id}/sessions`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",

@@ -12,7 +12,7 @@ export default function ModalSession({
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
-		fetch(`http://localhost:5000/sessions/${idSession}`)
+		fetch(`${import.meta.env.VITE_BACKEND_URL}/sessions/${idSession}`)
 			.then((response) => response.json())
 			.then((session) => {
 				setSession(session);
