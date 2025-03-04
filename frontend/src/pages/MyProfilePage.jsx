@@ -56,7 +56,7 @@ export default function MyProfilePage() {
 					<h1 className="text-3xl font-bold font-righteous text-center mt-8">
 						Mon profil
 					</h1>
-					<div className="w-[70%] md:w-[40%] mx-auto relative flex flex-col items-center h-screen md:h-[70%] my-10 md:my-20 p-10 md:p-20 gap-10 bg-gray-light shadow-sm rounded-sm">
+					<div className="w-[90%] md:w-[60%] mx-auto relative flex flex-col items-center md:h-[70%] my-10 md:my-20 p-10 md:p-20 gap-10 bg-gray-light shadow-sm rounded-sm">
 						<img
 							src={user?.image_url ? user?.image_url : UserPhoto}
 							alt="User"

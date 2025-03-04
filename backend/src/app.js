@@ -16,10 +16,10 @@ app.use(express.json());
 const cors = require("cors");
 
 app.use(
-  cors({
-    origin: process.env.FRONTEND_URL ?? "http://localhost:3000",
-    optionsSuccessStatus: 200,
-  })
+	cors({
+		origin: process.env.FRONTEND_URL ?? "https://wavely-app.netlify.app",
+		optionsSuccessStatus: 200,
+	}),
 );
 
 // import and mount the API routes
@@ -36,24 +36,24 @@ app.use("/audio", express.static(path.join(__dirname, "public/audio")));
 // serve REACT APP
 
 const reactIndexFile = path.join(
-  __dirname,
-  "..",
-  "..",
-  "frontend",
-  "dist",
-  "index.html"
+	__dirname,
+	"..",
+	"..",
+	"frontend",
+	"dist",
+	"index.html",
 );
 
 if (fs.existsSync(reactIndexFile)) {
-  // serve REACT resources
+	// serve REACT resources
 
-  app.use(express.static(path.join(__dirname, "..", "..", "frontend", "dist")));
+	app.use(express.static(path.join(__dirname, "..", "..", "frontend", "dist")));
 
-  // redirect all requests to the REACT index file
+	// redirect all requests to the REACT index file
 
-  app.get("*", (req, res) => {
-    res.sendFile(reactIndexFile);
-  });
+	app.get("*", (req, res) => {
+		res.sendFile(reactIndexFile);
+	});
 }
 
 // ready to export
