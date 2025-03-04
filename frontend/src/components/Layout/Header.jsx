@@ -15,7 +15,7 @@ export default function Header({ backgroundColor, string, path }) {
 	};
 	return (
 		<header
-			className={`w-[80%] max-w-[36rem] h-[4rem] z-20 rounded-full mt-6 mx-auto flex md:flex-col justify-center items-center font-albert-sans relative  ${backgroundColor}`}
+			className={`w-[80%] max-w-[42rem] h-[4rem] z-20 rounded-full mt-6 mb-6 mx-auto flex md:flex-col justify-center items-center font-albert-sans relative  ${backgroundColor}`}
 		>
 			<NavDesktop isHome={isHome} />
 			{!showMenu ? (

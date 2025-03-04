@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import UserPhoto from "../assets/user.png";
 import { format } from "date-fns";
@@ -7,11 +8,12 @@ import LogoutButton from "../ui/LogoutButton";
 import ModifyProfil from "../components/Modals/ModifyProfil";
 
 export default function MyProfilePage() {
-	const { userId } = useUser();
-	const [user, setUser] = useState(null);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(null);
-	const [isModalOpen, setIsModalOpen] = useState(false);
+    const navigate = useNavigate();
+    const { userId } = useUser();
+    const [user, setUser] = useState(null);
+    const [error, setError] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
 
 	const token = localStorage.getItem("token");
 
@@ -29,11 +31,8 @@ export default function MyProfilePage() {
 				const data = await response.json();
 
 				setUser(data);
-				if (!data) setLoading(false);
 			} catch (error) {
 				setError(error);
-			} finally {
-				setLoading(false);
 			}
 		}
 
@@ -42,17 +41,10 @@ export default function MyProfilePage() {
 		}
 	}, [userId, isModalOpen]);
 
-	// if (loading) return <p>Chargement de vos données...</p>;
-	// if (error) return <p>Error: {error.message}</p>;
-
-	const formatDate = (dateString) => {
+const formatDate = (dateString) => {
 		if (!dateString) return "Date inconnue";
 		return format(new Date(dateString), "MM/dd/yyyy");
 	};
-
-	if (!token && userId) {
-		setLoading(false);
-	}
 
 	return (
 		<div>
@@ -93,9 +85,20 @@ export default function MyProfilePage() {
 							<ModifyProfil onClose={() => setIsModalOpen(false)} />
 						)}
 						<LogoutButton />
+              <ButtonMain
+                text="Mon espace"
+                    style={{
+                        backgroundColor: "#0356fc",
+                        color: "white",
+                        borderRadius: "1rem",
+                        padding: "1rem",
+                    }}
+                onClick={() => navigate("/myspace")}
+            />
 					</div>
 				</>
 			)}
 		</div>
 	);
 }
+

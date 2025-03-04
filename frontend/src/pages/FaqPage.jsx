@@ -3,7 +3,7 @@ export default function FaqPage() {
     return (
     <>
         <div className="relative flex flex-col justify-start min-h-screen p-10">
-                <div className="md:text-5xl text-4xl text-center font-righteous w-full md:m-10 m-5 mt-10 break-words">Questions/Réponses</div>
+                <div className="md:text-3xl text-3xl font-semibold text-center font-albert-sans w-full md:m-10 m-5 mt-10 break-words">Questions/Réponses</div>
                 <QuestionReponse title="Que sont les fréquences et comment peuvent-elles être utilisées&nbsp;?">
                     <p>Tout dans l’Univers possède une fréquence unique qui peut être mesurée et enregistrée. Grâce aux technologies modernes, ces fréquences peuvent être utilisées sous forme de fichiers audio pour harmoniser l’esprit et le corps.</p>  
                 </QuestionReponse>
