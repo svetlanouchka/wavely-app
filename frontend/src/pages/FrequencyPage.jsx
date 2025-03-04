@@ -9,7 +9,7 @@ import Modal from "../ui/Modal";
 
 export default function FrequencyPage() {
 	const { id } = useParams();
-	console.info(typeof id);
+
 	const [frequency, setFrequency] = useState(null);
 	const [recommendedFrequencies, setRecommendedFrequencies] = useState([]);
 	const [tags, setTags] = useState([]);
@@ -17,6 +17,10 @@ export default function FrequencyPage() {
 
 	const navigate = useNavigate();
 
+	const userId = localStorage.getItem("userId");
+	const token = localStorage.getItem("token");
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		fetch(`http://localhost:5000/frequencies/${Number(id)}`)
 			.then((response) => {
@@ -94,6 +98,14 @@ export default function FrequencyPage() {
 		loadRecommendedFrequencies();
 	}, [tags, frequency]);
 
+	const handleClick = () => {
+		if (!userId && !token) {
+			navigate("/login");
+		} else {
+			setIsModalOpen(true);
+		}
+	};
+
 	return (
 		<div className="flex flex-col min-h-screen">
 			<div className="w-full flex justify-start p-4">
@@ -126,7 +138,7 @@ export default function FrequencyPage() {
 								width: "200px",
 								marginTop: "20px",
 							}}
-							onClick={() => setIsModalOpen(true)}
+							onClick={handleClick}
 						/>
 					</div>
 				</div>

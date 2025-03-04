@@ -37,14 +37,10 @@ export default function LoginForm() {
 					throw new Error("Une erreur est survenue");
 				}
 				const data = await response.json();
-				console.log(data);
 
-				const { token, user } = data;  
+				const { token, user } = data;
 				setUserId(user.id);
-				localStorage
-					.setItem("token", token)
-				console.log("user.id", user.id);
-				console.log("token", token);
+				localStorage.setItem("token", token);
 				resetForm();
 				navigate("/frequencies");
 			} catch (error) {
