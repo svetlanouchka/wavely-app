@@ -11,8 +11,10 @@ export default function Frequency() {
 
 	const navigate = useNavigate();
 
+	console.log("ENV ->", import.meta.env.VITE_BACKEND_URL);
+
 	useEffect(() => {
-		fetch("http://localhost:5000/frequencies")
+		fetch(`${import.meta.env.VITE_BACKEND_URL}/frequencies`)
 			.then((response) => response.json())
 			.then((data) => {
 				setFrequences(data);
