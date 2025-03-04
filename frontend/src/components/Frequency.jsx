@@ -12,7 +12,7 @@ export default function Frequency() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		fetch("https://wavely-app.onrender.com/frequencies")
+		fetch("http://localhost:5000/frequencies")
 			.then((response) => response.json())
 			.then((data) => {
 				setFrequences(data);
