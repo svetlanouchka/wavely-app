@@ -11,8 +11,6 @@ export default function Frequency() {
 
 	const navigate = useNavigate();
 
-	console.log("ENV ->", import.meta.env.VITE_BACKEND_URL);
-
 	useEffect(() => {
 		fetch(`${import.meta.env.VITE_BACKEND_URL}/frequencies`)
 			.then((response) => response.json())

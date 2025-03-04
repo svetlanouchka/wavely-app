@@ -34,13 +34,16 @@ export default function ContactForm() {
 		validateOnChange: false,
 		onSubmit: async (values, { resetForm }) => {
 			try {
-				const response = await fetch("http://localhost:5000/contact", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
+				const response = await fetch(
+					`${import.meta.env.VITE_BACKEND_URL}/contact`,
+					{
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify(values),
 					},
-					body: JSON.stringify(values),
-				});
+				);
 				if (!response.ok) {
 					throw new Error("Une erreur est survenue");
 				}

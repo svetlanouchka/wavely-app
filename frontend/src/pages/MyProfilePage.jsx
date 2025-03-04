@@ -8,12 +8,11 @@ import LogoutButton from "../ui/LogoutButton";
 import ModifyProfil from "../components/Modals/ModifyProfil";
 
 export default function MyProfilePage() {
-    const navigate = useNavigate();
-    const { userId } = useUser();
-    const [user, setUser] = useState(null);
-    const [error, setError] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
+	const navigate = useNavigate();
+	const { userId } = useUser();
+	const [user, setUser] = useState(null);
+	const [error, setError] = useState(null);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const token = localStorage.getItem("token");
 
@@ -21,7 +20,7 @@ export default function MyProfilePage() {
 	useEffect(() => {
 		async function getUser() {
 			try {
-				const response = await fetch("http://localhost:5000/me", {
+				const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/me`, {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -41,7 +40,7 @@ export default function MyProfilePage() {
 		}
 	}, [userId, isModalOpen]);
 
-const formatDate = (dateString) => {
+	const formatDate = (dateString) => {
 		if (!dateString) return "Date inconnue";
 		return format(new Date(dateString), "MM/dd/yyyy");
 	};
@@ -85,20 +84,19 @@ const formatDate = (dateString) => {
 							<ModifyProfil onClose={() => setIsModalOpen(false)} />
 						)}
 						<LogoutButton />
-              <ButtonMain
-                text="Mon espace"
-                    style={{
-                        backgroundColor: "#0356fc",
-                        color: "white",
-                        borderRadius: "1rem",
-                        padding: "1rem",
-                    }}
-                onClick={() => navigate("/myspace")}
-            />
+						<ButtonMain
+							text="Mon espace"
+							style={{
+								backgroundColor: "#0356fc",
+								color: "white",
+								borderRadius: "1rem",
+								padding: "1rem",
+							}}
+							onClick={() => navigate("/myspace")}
+						/>
 					</div>
 				</>
 			)}
 		</div>
 	);
 }
-

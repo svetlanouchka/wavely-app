@@ -22,7 +22,7 @@ export default function FrequencyPage() {
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
-		fetch(`http://localhost:5000/frequencies/${Number(id)}`)
+		fetch(`${import.meta.env.VITE_BACKEND_URL}/frequencies/${Number(id)}`)
 			.then((response) => {
 				if (response.status === 404) {
 					navigate("/404");
@@ -33,7 +33,7 @@ export default function FrequencyPage() {
 			.then((frequencyData) => {
 				setFrequency(frequencyData);
 
-				fetch(`http://localhost:5000/frequencies/${id}/tags`)
+				fetch(`${import.meta.env.VITE_BACKEND_URL}/frequencies/${id}/tags`)
 					.then((response) => response.json())
 					.then((tagsData) => {
 						setTags(tagsData);
@@ -54,7 +54,7 @@ export default function FrequencyPage() {
 
 				const getFrequenciesForTag = async (randomTag) => {
 					const allFrequencies = await fetch(
-						`http://localhost:5000/tags/${randomTag.id}/frequencies`,
+						`${import.meta.env.VITE_BACKEND_URL}/tags/${randomTag.id}/frequencies`,
 					)
 						.then((response) => response.json())
 						.catch((error) =>
