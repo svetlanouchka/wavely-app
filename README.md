@@ -1,22 +1,34 @@
-## Setup & Use
+![Bannière wavely](public/Banner.png)
 
-### Project Initialization
+## L'équipe
+| ![Svetlana Preux-Nigay](public/Svet.png) | ![Mattias Guittari](public/Matt.png) |
+|:----------------------------------------:|:------------------------------------:|:---------------------------------------:|
+| Svetlana Preux-Nigay                     | Mattias Guittari                     | 
 
-- Clone this repo, enter it
-- Run command `npm install`
-- _NB: To launch the backend server, you'll need an environment file with database credentials. You'll find a template one in `backend/.env.sample`_
+## Le projet
 
-### Available Commands
+Description du projet
 
-- `migrate` : Run the database migration script
-- `dev` : Starts both servers (frontend + backend) in one terminal
-- `dev-front` : Starts the React frontend server
-- `dev-back` : Starts the Express backend server
+## Technos
 
-## FAQ
+**Front-end**
 
-### Tools
+- JavaScript
+- React
+- TailwindCSS
+- React-player-audio
+- Formik
 
-- _Concurrently_ : Allows for several commands to run concurrently in the same CLI
-- _Vite_ : Alternative to _Create-React-App_, packaging less tools for a more fluid experience
-- _Nodemon_ : Allows to restart the server everytime a .js file is udated
+**Back-end**
+
+- Node
+- Express
+- Jasonwebtoken
+- Nodemon
+- Argon2
+- Joi
+- Dotenv
+- Postman
+- Multer
+
+## Organisation

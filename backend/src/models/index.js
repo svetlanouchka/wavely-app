@@ -7,22 +7,22 @@ const mysql = require("mysql2/promise");
 const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
 
 const pool = mysql.createPool({
-  host: DB_HOST,
-  port: DB_PORT,
-  user: DB_USER,
-  password: DB_PASSWORD,
-  database: DB_NAME,
+	host: DB_HOST,
+	port: DB_PORT,
+	user: DB_USER,
+	password: DB_PASSWORD,
+	database: DB_NAME,
 });
 
 // try a connection
 
 pool.getConnection().catch(() => {
-  console.warn(
-    "Warning:",
-    "Failed to get a DB connection.",
-    "Did you create a .env file with valid credentials?",
-    "Routes using models won't work as intended"
-  );
+	console.warn(
+		"Warning:",
+		"Failed to get a DB connection.",
+		"Did you create a .env file with valid credentials?",
+		"Routes using models won't work as intended",
+	);
 });
 
 // declare and fill models: that's where you should register your own managers
@@ -30,28 +30,52 @@ pool.getConnection().catch(() => {
 const models = {};
 
 const ItemManager = require("./ItemManager");
+const UserManager = require("./UserManager");
+const FrequencyManager = require("./FrequencyManager");
+const CategoryManager = require("./CategoryManager");
+const SessionManager = require("./SessionManager");
+const TagManager = require("./TagManager");
+const FrequencyTagManager = require("./FrequencyTagManager");
 
 models.item = new ItemManager();
 models.item.setDatabase(pool);
+
+models.user = new UserManager();
+models.user.setDatabase(pool);
+
+models.frequency = new FrequencyManager();
+models.frequency.setDatabase(pool);
+
+models.category = new CategoryManager();
+models.category.setDatabase(pool);
+
+models.session = new SessionManager();
+models.session.setDatabase(pool);
+
+models.tag = new TagManager();
+models.tag.setDatabase(pool);
+
+models.frequency_tag = new FrequencyTagManager();
+models.frequency_tag.setDatabase(pool);
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 
 const handler = {
-  get(obj, prop) {
-    if (prop in obj) {
-      return obj[prop];
-    }
+	get(obj, prop) {
+		if (prop in obj) {
+			return obj[prop];
+		}
 
-    const pascalize = (string) =>
-      string.slice(0, 1).toUpperCase() + string.slice(1);
+		const pascalize = (string) =>
+			string.slice(0, 1).toUpperCase() + string.slice(1);
 
-    throw new ReferenceError(
-      `models.${prop} is not defined. Did you create ${pascalize(
-        prop
-      )}Manager.js, and did you register it in backend/src/models/index.js?`
-    );
-  },
+		throw new ReferenceError(
+			`models.${prop} is not defined. Did you create ${pascalize(
+				prop,
+			)}Manager.js, and did you register it in backend/src/models/index.js?`,
+		);
+	},
 };
 
 module.exports = new Proxy(models, handler);

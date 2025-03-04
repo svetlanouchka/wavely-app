@@ -1,0 +1,59 @@
+@property --size {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 50px;
+}
+
+@keyframes expandWaves {
+  0% {
+    --size: 100px;
+  }
+  50% {
+    --size: 250px;
+  }
+  100% {
+    --size: 100px;
+  }
+}
+
+.animated-background {
+  position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    animation: expandWaves 20s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+}
+
+.animated-background-home {
+  height: 100%;
+  background: repeating-radial-gradient(circle at center, #C1FF72 -10rem, #16A7AC, #C1FF72 var(--size));
+
+  /* background: repeating-radial-gradient(circle at center, rgb(9 223 148) 0, rgb(161 12 205), rgb(9 223 148) var(--size)); */
+    
+  /* background: repeating-radial-gradient(circle at center, rgb(63 219 191) 0, rgb(207 146 225), rgb(63 219 191) var(--size)); */
+    /* background: repeating-radial-gradient(circle at center, rgb(186, 247, 236) 0, rgb(146, 225, 208), rgb(192, 245, 235) var(--size)); */
+    
+    
+}
+
+.animated-background-session {
+  
+  background: repeating-radial-gradient(circle at center, #16A7AC -5rem, #2124c5, #16A7AC var(--size));
+
+}
+
+@media screen and (min-width: 768px) {
+  @keyframes expandWaves {
+    0% {
+      --size: 170px;
+    }
+    50% {
+      --size: 300px;
+    }
+    100% {
+      --size: 170px;
+    }
+  }
+}
