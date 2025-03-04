@@ -30,8 +30,6 @@ export default function UserPage() {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
-
 				setSessionsData(data);
 			})
 			.catch((error) =>

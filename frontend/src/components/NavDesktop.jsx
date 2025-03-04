@@ -3,9 +3,7 @@ import LogoW from "./LogoW";
 import ButtonLaunch from "../ui/ButtonLaunch";
 import { useUser } from "../context/UserContext";
 
-
 export default function NavDesktop({ isHome }) {
-
 	const { userId } = useUser();
 
 	return (
@@ -39,13 +37,15 @@ export default function NavDesktop({ isHome }) {
 				</Link>
 				{userId ? (
 					<Link to="/my-profile">
-						<button type="button" className="flex items-center gap-2 border-1 border-blue-violet rounded-full p-2">
+						<button
+							type="button"
+							className="flex items-center gap-2 border-1 border-blue-violet rounded-full p-2"
+						>
 							<p className="text-blue-violet cursor-pointer">Mon Profil</p>
 						</button>
 					</Link>
 				) : (
-
-				<ButtonLaunch />
+					<ButtonLaunch />
 				)}
 			</div>
 		</div>
