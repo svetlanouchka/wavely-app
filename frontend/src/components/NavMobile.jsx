@@ -46,6 +46,7 @@ export default function NavMobile({ toggleMenu, backgroundColor, isHome }) {
 						<Link to="/my-profile">
 							<button
 								type="button"
+								onClick={toggleMenu}
 								className="flex items-center gap-2 border-1 border-blue-violet rounded-full p-2"
 							>
 								<p className="text-blue-violet cursor-pointer">Mon Profil</p>
