@@ -1,5 +1,6 @@
-import svetPic from "../../../public/Svet.png";
+import svetPic from "../../../public/Svet.png";	
 import mattPic from "../../../public/Matt.png";
+import yuliaPic from "../../../public/Yulia.jpg";
 import waves from "../assets/Waves.mp4";
 import goodMood from "../../../backend/public/assets/images/frequences/bonne_humeur.png";
 import success from "../../../backend/public/assets/images/frequences/success.png";
@@ -17,8 +18,8 @@ export default function AboutPage() {
 				<p className="my-8">
 					Bienvenue dans un univers où les fréquences sonores et les
 					affirmations positives travaillent en harmonie pour favoriser votre
-					bien-être. Wavely est née de la passion commune d’une développeuse et
-					d’une énergothérapeute, pour offrir un outil accessible qui guide
+					bien-être. Wavely est née de la passion commune d’une développeuse Svetlana Preux-Nigay et
+					d’une énergothérapeute Yulia Taubin, pour offrir un outil accessible qui guide
 					chacun vers l’équilibre et la sérénité.{" "}
 				</p>
 			</div>
@@ -40,17 +41,23 @@ export default function AboutPage() {
 				</video>
 			</div>
 			<div className="mt-[68%] md:mt-[60%]">
-				<h2 className="text-3xl font-medium text-center">L'équipe</h2>
+				<h2 className="text-3xl font-medium text-center">L'autrice</h2>
+				<div>
+					<img className="md:w-[300px] flex mx-auto my-6" src={yuliaPic} alt="Yulia Taubin" />
+					<h3 className="text-2xl my-2 text-center">Yulia Taubin</h3>
+					<p className="md:text-center">Energothérapeute et l'autrice des fréquences et des affirmations</p>
+				</div>
+				<h2 className="text-3xl font-medium text-center my-4">L'équipe</h2>
 				<div className="flex flex-row gap-4 md:gap-12 my-8">
 					<div>
 						<img className="md:w-[300px]" src={svetPic} alt="Svetlana" />
 						<h3 className="text-2xl my-2 text-center">Svetlana</h3>
-						<p className="md:text-center">Co-founder & Lead tech</p>
+						<p className="md:text-center">Lead tech</p>
 					</div>
 					<div>
 						<img className="md:w-[300px]" src={mattPic} alt="Matt" />
 						<h3 className="text-2xl my-2 text-center">Matt</h3>
-						<p className="md:text-center">Co-founder & Lead tech</p>
+						<p className="md:text-center">Lead tech</p>
 					</div>
 				</div>
 			</div>
