@@ -3,8 +3,10 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import ButtonMain from "../ui/ButtonMain";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUpForm() {
+	const navigate = useNavigate();
 	const formik = useFormik({
 		initialValues: {
 			first_name: "",
@@ -70,7 +72,7 @@ export default function SignUpForm() {
 			};
 			// biome-ignore lint/performance/noDelete: <explanation>
 			delete valuesTransformed.confirmPassword;
-			console.log("new format ???", valuesTransformed);
+
 			try {
 				const response = await fetch(
 					`${import.meta.env.VITE_BACKEND_URL}/users`,
@@ -84,10 +86,10 @@ export default function SignUpForm() {
 				);
 
 				if (!response.ok) {
-					console.log(response);
 					throw new Error("Une erreur est survenue");
 				}
 				const data = await response.json();
+				navigate("/login");
 				console.log("data ? -->", data);
 			} catch (error) {
 				console.error("Erreur:", error);
