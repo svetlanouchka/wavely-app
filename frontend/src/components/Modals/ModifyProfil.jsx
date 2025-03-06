@@ -16,7 +16,9 @@ export default function ModifyProfil({ onClose }) {
 	useEffect(() => {
 		async function getUser() {
 			try {
-				const response = await fetch(`http://localhost:5000/users/${userId}`);
+				const response = await fetch(
+					`${import.meta.env.VITE_BACKEND_URL}/users/${userId}`,
+				);
 				const data = await response.json();
 				setUser(data);
 			} catch (error) {
@@ -70,14 +72,17 @@ export default function ModifyProfil({ onClose }) {
 		onSubmit: async (values) => {
 			console.log("début submit", formik.values);
 			try {
-				const response = await fetch(`http://localhost:5000/users/${userId}`, {
-					method: "PATCH",
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${token}`,
+				const response = await fetch(
+					`${import.meta.env.VITE_BACKEND_URL}/users/${userId}`,
+					{
+						method: "PATCH",
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${token}`,
+						},
+						body: JSON.stringify(values),
 					},
-					body: JSON.stringify(values),
-				});
+				);
 
 				if (!response.ok) {
 					console.log(response);

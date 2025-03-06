@@ -6,7 +6,7 @@ export default function ButtonLaunch({ toggleMenu }) {
 			<button
 				type="button"
 				onClick={toggleMenu}
-				className="relative p-2 m-0 border-0 bg-transparent"
+				className="relative flex m-0 border-0 bg-transparent"
 			>
 				<img
 					src={BlurButton}
